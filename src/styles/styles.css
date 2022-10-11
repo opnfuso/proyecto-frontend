@@ -1,0 +1,7 @@
+.img-container {
+  background: linear-gradient(116.77deg, rgba(31, 33, 34, 0.47) 0.71%, rgba(168, 198, 243, 0.69) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
