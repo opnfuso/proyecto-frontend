@@ -148,7 +148,7 @@ const CreateDispositivo = () => {
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="imei" />
+                            <ErrorMessage type="number" name="imei" />
                           </div>
                         </div>
                       </div>
@@ -195,7 +195,7 @@ const CreateDispositivo = () => {
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="date" />
+                            <ErrorMessage type="date" name="date" />
                           </div>
                         </div>
                       </div>
