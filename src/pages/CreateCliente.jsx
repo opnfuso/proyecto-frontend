@@ -5,7 +5,13 @@ const CreateCliente = () => {
   return (
     <div
       className="container"
-      style={{ height: "100vh", margin: 0, padding: 0, maxWidth: "100vw" }}
+      style={{
+        height: "100vh",
+        margin: 0,
+        padding: 0,
+        maxWidth: "100vw",
+        overflow: "hidden",
+      }}
     >
       <div className="row vh-100">
         <div className="col-md-6 register-container d-flex flex-column justify-content-center align-items-center">
