@@ -6,7 +6,7 @@ export const getClientesRequest = async () =>
 export const getClienteRequest = async (id) =>
   await axios.get(`${process.env.BASE_URL}/clientes/${id}`);
 
-export const createClienteRequest = async (id, cliente) =>
+export const createClienteRequest = async (cliente) =>
   await axios.post(`${process.env.BASE_URL}/clientes`, cliente);
 
 export const updateClienteRequest = async (id, cliente) =>
