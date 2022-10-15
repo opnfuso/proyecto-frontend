@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../containers/Navbar";
 
 export class SeleccionUsuarios extends Component {
@@ -10,11 +11,11 @@ export class SeleccionUsuarios extends Component {
           <div id="content">
             <nav className="navbar navbar-light navbar-expand-md py-3">
               <div className="container d-flex justify-content-between">
-                <a className="navbar-brand d-flex align-items-center" href="#">
+                <div className="navbar-brand d-flex align-items-center">
                   <span style={{ color: "rgb(9,44,77)", fontWeight: "bold" }}>
                     Selecciona la vista
                   </span>
-                </a>
+                </div>
               </div>
             </nav>
           </div>
@@ -25,32 +26,32 @@ export class SeleccionUsuarios extends Component {
           >
             <div className="row">
               <div className="col-md-12">
-                <a
+                <Link
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                  href="vista-clientes.html"
+                  to="/clientes"
                 >
                   Clientes
-                </a>
+                </Link>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12">
-                <a
+                <Link
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                  href="vista-admins.html"
+                  to="/administradores"
                 >
                   Admins
-                </a>
+                </Link>
               </div>
             </div>
             <div className="row">
               <div className="col-md-12">
-                <a
+                <Link
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                  href="vista-tecnicos.html"
+                  to="/tecnicos"
                 >
                   Tecnicos
-                </a>
+                </Link>
               </div>
             </div>
           </div>
