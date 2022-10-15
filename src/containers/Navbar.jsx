@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import logo from "../assets/img/Logo.png";
+import { Link } from "react-router-dom";
 import "../assets/fonts/fontawesome-all.min.css";
 import "../assets/fonts/ionicons.min.css";
 import "../assets/fonts/typicons.min.css";
 import "../styles/Navbar-Right-Links-icons.css";
+import Layout from "./Layout";
 
 export class Navbar extends Component {
   render() {
@@ -13,9 +15,9 @@ export class Navbar extends Component {
         id="navbar-sidebar-wrapper"
       >
         <div className="container-fluid d-flex flex-column p-0">
-          <a
+          <Link
             className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-            href="#"
+            to="/"
           >
             <div className="sidebar-brand-icon rotate-n-15">
               <img src={logo} style={{ width: 40, height: 40 }} alt="Logo" />
@@ -23,23 +25,23 @@ export class Navbar extends Component {
             <div className="sidebar-brand-text mx-3">
               <span>Brand</span>
             </div>
-          </a>
+          </Link>
           <hr className="sidebar-divider my-0" />
           <ul className="navbar-nav text-light" id="accordionSidebar">
             <li className="nav-item">
-              <a className="nav-link" href="seleccion-usuarios.html">
+              <Link className="nav-link" to="/usuarios">
                 <i className="fas fa-users" />
                 <span>Usuarios</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="profile.html">
+              <a className="nav-link" href="#">
                 <i className="fas fa-user" style={{ width: 15, height: 15 }} />
                 <span>Perfil</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="table.html">
+              <a className="nav-link" href="#">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"
@@ -58,17 +60,17 @@ export class Navbar extends Component {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="blank.html">
+              <a className="nav-link" href="#">
                 <i className="icon ion-ios-bookmarks" />
                 <span>Manual</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="blank.html">
+              <a className="nav-link" href="#">
                 <i className="typcn typcn-spanner-outline" />
                 <span>Refacciones</span>
               </a>
-              <a className="nav-link" href="blank.html">
+              <a className="nav-link" href="#">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1em"

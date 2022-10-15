@@ -4,6 +4,7 @@ import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
+import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import "../styles/styles.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Navbar />} />
+          <Route path="/usuarios" element={<SeleccionUsuarios />} />
           <Route path="/crear-dispositivo" element={<CreateDispositivo />} />
           <Route path="/crear-cliente" element={<CreateCliente />} />
         </Routes>
