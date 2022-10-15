@@ -7,7 +7,7 @@ import ListAdministradores from "../containers/ListAdministradores";
 const VistaAdministradores = () => {
   const [administradores, setAdministradores] = useState([]);
 
-  async function loadAdministradores() {
+  const loadAdministradores = async () => {
     try {
       const response = await getAdministradoresRequest();
       console.log(response.data);
@@ -15,7 +15,7 @@ const VistaAdministradores = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     loadAdministradores();
