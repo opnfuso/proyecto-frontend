@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
-import ItemAdministrador from "../components/ItemAdministrador.jsx";
 import { getAdministradoresRequest } from "../api/administrador.api";
 import ListAdministradores from "../containers/ListAdministradores";
 

@@ -8,6 +8,7 @@ function ItemCliente(props) {
       <td>{props.apellidos}</td>
       <td>{props.fechaNacimiento}</td>
       <td>{props.telefono}</td>
+      <td>{props.domicilio}</td>
       <td>
         <a href="#">
           <i className="fas fa-edit" />
@@ -22,6 +23,7 @@ ItemCliente.propTypes = {
   apellidos: PropTypes.string,
   telefono: PropTypes.string,
   fechaNacimiento: PropTypes.string,
+  domicilio: PropTypes.string,
 };
 
 export default ItemCliente;

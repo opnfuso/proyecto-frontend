@@ -1,7 +1,25 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import ListClientes from "../containers/ListClientes";
 import Navbar from "../containers/Navbar";
+import { getClientesRequest } from "../api/cliente.api";
 
 const VistaClientes = () => {
+  const [clientes, setClientes] = useState([]);
+
+  const loadClientes = async () => {
+    try {
+      const response = await getClientesRequest();
+      console.log(response.data);
+      setClientes(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    loadClientes();
+  }, []);
+
   return (
     <div id="wapper">
       <Navbar />
@@ -31,71 +49,7 @@ const VistaClientes = () => {
                   role="grid"
                   aria-describedby="dataTable_info"
                 >
-                  <table className="table my-0" id="dataTable">
-                    <thead>
-                      <tr>
-                        <th>Nombre</th>
-                        <th>Telefono</th>
-                        <th>Domicilio</th>
-                        <th>Editar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Airi Satou</td>
-                        <td>3314567832</td>
-                        <td>Fray Francisco palou 675</td>
-                        <td>
-                          <a href="#">
-                            <i className="fas fa-edit" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Angelica Ramos</td>
-                        <td>3314567832</td>
-                        <td>Fray Francisco palou 675</td>
-                        <td>
-                          <a href="#">
-                            <i className="fas fa-edit" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Ashton Cox</td>
-                        <td>3314567832</td>
-                        <td>Fray Francisco palou 675</td>
-                        <td>
-                          <a href="#">
-                            <i className="fas fa-edit" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Bradley Greer</td>
-                        <td>3314567832</td>
-                        <td>Fray Francisco palou 675</td>
-                        <td>
-                          <a href="#">
-                            <i className="fas fa-edit" />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Brenden Wagner</td>
-                        <td>3314567832</td>
-                        <td>Fray Francisco palou 675</td>
-                        <td>
-                          <a href="#">
-                            <i className="fas fa-edit" />
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                    <tfoot>
-                      <tr />
-                    </tfoot>
-                  </table>
+                  <ListClientes clientes={clientes} key={clientes.id} />
                 </div>
               </div>
             </div>
