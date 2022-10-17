@@ -9,7 +9,6 @@ const VistaTecnicos = () => {
   const loadTecnicos = async () => {
     try {
       const response = await getTecnicosRequest();
-      console.log(response.data);
       setTecnicos(response.data);
     } catch (error) {
       console.error(error);
