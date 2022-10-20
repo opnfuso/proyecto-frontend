@@ -1,6 +1,6 @@
-import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Routes, redirect } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "../components/protectedRoute";
 import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateCliente from "../pages/CreateCliente";
@@ -18,7 +18,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Navbar />} />
           <Route path="/usuarios" element={<SeleccionUsuarios />} />
-          <Route path="/administradores" element={<VistaAdministradores />} />
+          <Route
+            path="/administradores"
+            element={
+              <ProtectedRoute component={VistaAdministradores} rol="Soporte" />
+            }
+          />
           <Route path="/clientes" element={<VistaClientes />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/crear-dispositivo" element={<CreateDispositivo />} />
