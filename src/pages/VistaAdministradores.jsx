@@ -20,7 +20,7 @@ const VistaAdministradores = () => {
 
   useEffect(() => {
     loadAdministradores();
-  }, []);
+  });
 
   return (
     <div id="wapper">
