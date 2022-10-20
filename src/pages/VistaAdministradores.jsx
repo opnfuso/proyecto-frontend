@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import { getAdministradoresRequest } from "../api/administrador.api";
 import ListAdministradores from "../containers/ListAdministradores";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const VistaAdministradores = () => {
+  const { getAccessTokenSilently } = useAuth0();
   const [administradores, setAdministradores] = useState([]);
 
   const loadAdministradores = async () => {
     try {
-      const response = await getAdministradoresRequest();
+      const accessToken = await getAccessTokenSilently();
+      const response = await getAdministradoresRequest(accessToken);
       setAdministradores(response.data);
     } catch (error) {
       console.error(error);

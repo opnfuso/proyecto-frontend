@@ -1,8 +1,15 @@
 import axios from "axios";
 
-export const getAdministradoresRequest = async () =>
-  await axios.get(`${process.env.REACT_APP_API_URL}/administradores`);
+export const getAdministradoresRequest = async (token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
 
+  return await axios.get(
+    `${process.env.REACT_APP_API_URL}/administradores`,
+    config
+  );
+};
 export const getAdministradorRequest = async (id) =>
   await axios.get(`${process.env.REACT_APP_API_URL}/administradores/${id}`);
 
