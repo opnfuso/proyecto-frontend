@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes, redirect } from "react-router-dom";
 import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateCliente from "../pages/CreateCliente";
