@@ -1,9 +1,11 @@
 import React from "react";
 import img from "../assets/img/business-3d-joyful-young-black-man-jumping.png";
+import logo from "../assets/img/Logo.png";
 import { ErrorMessage, Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { createClienteSchema } from "../schemas/clientes/create.schema";
 import { createClienteRequest } from "../api/cliente.api";
+import { Link } from "react-router-dom";
 
 const CreateCliente = () => {
   return (
@@ -38,14 +40,15 @@ const CreateCliente = () => {
                 }).then(async (result) => {
                   try {
                     if (result.isConfirmed) {
-                      const response = await createClienteRequest(values);
+                      // const response = await createClienteRequest(values);
 
-                      if (response.status === 201) {
-                        Swal.fire({
-                          title: "Cliente creado con exito",
-                          icon: "success",
-                        });
-                      }
+                      // if (response.status === 201) {
+                      //   Swal.fire({
+                      //     title: "Cliente creado con exito",
+                      //     icon: "success",
+                      //   });
+                      // }
+                      console.log(values);
                     }
                   } catch (error) {
                     console.error(error);
@@ -148,25 +151,6 @@ const CreateCliente = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col">
-                      <div className="row">
-                        <div className="col col-md-8 offset-md-1">
-                          <p>Email</p>
-                        </div>
-                        <div className="col col-md-10 offset-md-1">
-                          <Field
-                            className="form-control"
-                            type="email"
-                            name="email"
-                            placeholder="alexis594@gmail.com"
-                            required
-                          />
-                          <div style={{ color: "red" }}>
-                            <ErrorMessage type="email" name="email" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div
                     className="row"
@@ -240,6 +224,9 @@ const CreateCliente = () => {
           <img src={img} style={{ width: 350 }} alt="Person" />
         </div>
       </div>
+      <Link to={"/"} className="position-absolute top-0 m-2">
+        <img src={logo} alt="Logo" />
+      </Link>
     </div>
   );
 };
