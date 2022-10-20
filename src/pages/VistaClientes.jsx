@@ -9,7 +9,6 @@ const VistaClientes = () => {
   const loadClientes = async () => {
     try {
       const response = await getClientesRequest();
-      console.log(response.data);
       setClientes(response.data);
     } catch (error) {
       console.error(error);

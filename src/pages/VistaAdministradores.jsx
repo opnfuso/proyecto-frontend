@@ -9,7 +9,6 @@ const VistaAdministradores = () => {
   const loadAdministradores = async () => {
     try {
       const response = await getAdministradoresRequest();
-      console.log(response.data);
       setAdministradores(response.data);
     } catch (error) {
       console.error(error);
