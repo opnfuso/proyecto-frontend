@@ -18,6 +18,7 @@ function ListAdministradores({ administradores }) {
         {administradores.map((administrador) => (
           <ItemAdministrador
             key={administrador.id}
+            id={administrador.id}
             nombres={administrador.nombres}
             apellidos={administrador.apellidos}
             telefono={administrador.telefono}

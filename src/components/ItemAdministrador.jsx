@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function ItemAdministrador(props) {
   return (
@@ -9,9 +10,9 @@ function ItemAdministrador(props) {
       <td>{props.fechaNacimiento}</td>
       <td>{props.telefono}</td>
       <td>
-        <a href="#">
+        <Link to={`${props.id}`} href="#">
           <i className="fas fa-edit" />
-        </a>
+        </Link>
       </td>
     </tr>
   );
@@ -22,6 +23,7 @@ ItemAdministrador.propTypes = {
   apellidos: PropTypes.string,
   telefono: PropTypes.string,
   fechaNacimiento: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default ItemAdministrador;

@@ -5,6 +5,7 @@ import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
+import DetallesAdministradores from "../pages/DetallesAdministradores";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaClientes from "../pages/VistaClientes";
@@ -23,6 +24,10 @@ function App() {
             element={
               <ProtectedRoute component={VistaAdministradores} rol="Soporte" />
             }
+          />
+          <Route
+            path="/administradores/:id"
+            element={<DetallesAdministradores />}
           />
           <Route path="/clientes" element={<VistaClientes />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />

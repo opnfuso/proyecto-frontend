@@ -194,7 +194,8 @@ h {
   color: white;
   font-size: 24px;
   font-weight: bold;
-  width: 369px;
-  height: 80px;
+  width: auto;
+  height: auto;
+  margin: 0 20px;
 }
 
