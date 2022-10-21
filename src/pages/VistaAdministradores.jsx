@@ -5,7 +5,7 @@ import ListAdministradores from "../containers/ListAdministradores";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const VistaAdministradores = () => {
-  const { getAccessTokenSilently, getIdTokenClaims } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
   const [administradores, setAdministradores] = useState([]);
 
   const loadAdministradores = async () => {
