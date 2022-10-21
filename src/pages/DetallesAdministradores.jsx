@@ -68,7 +68,7 @@ const DetallesAdministradores = () => {
                 nombres: administrador.nombres,
                 apellidos: administrador.apellidos,
                 telefono: administrador.telefono,
-                fechaNacimiento: administrador.fechaNacimiento,
+                fecha_nacimiento: administrador.fechaNacimiento,
                 email: administrador.email,
                 password: "",
               }}
@@ -84,9 +84,12 @@ const DetallesAdministradores = () => {
                   }).then(async (result) => {
                     try {
                       if (result.isConfirmed) {
-                        // const response = await updateAdministradorRequest(
-                        //   values
-                        // );
+                        const response = await updateAdministradorRequest(
+                          administrador.id,
+                          values
+                        );
+
+                        console.log(response);
 
                         // if (response.status === 201) {
                         //   Swal.fire({
@@ -94,7 +97,6 @@ const DetallesAdministradores = () => {
                         //     icon: "success",
                         //   });
                         // }
-                        console.log(values);
                       }
                     } catch (error) {
                       console.error(error);
@@ -181,13 +183,13 @@ const DetallesAdministradores = () => {
                             <Field
                               className="form-control"
                               type="date"
-                              name="fechaNacimiento"
+                              name="fecha_nacimiento"
                               required
                             />
                             <div style={{ color: "red" }}>
                               <ErrorMessage
                                 type="date"
-                                name="fechaNacimiento"
+                                name="fecha_nacimiento"
                               />
                             </div>
                           </div>
@@ -293,7 +295,7 @@ const DetallesAdministradores = () => {
 //   nombres: PropTypes.string,
 //   apellidos: PropTypes.string,
 //   telefono: PropTypes.string,
-//   fechaNacimiento: PropTypes.string,
+//   fecha_nacimiento: PropTypes.string,
 //   email: PropTypes.string,
 //   password: PropTypes.string,
 // };
