@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ProtectedRoute } from "../components/protectedRoute";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateCliente from "../pages/CreateCliente";

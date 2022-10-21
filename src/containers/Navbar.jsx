@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React from "react";
 import logo from "../assets/img/Logo.png";
 import { Link } from "react-router-dom";
 import "../assets/fonts/fontawesome-all.min.css";

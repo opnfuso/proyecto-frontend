@@ -2,31 +2,40 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import avatar from "../assets/img/Avatar Wrapper.png";
 import cover from "../assets/img/Cover.png";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import { getAdministradorRequest } from "../api/administrador.api";
 import { useParams } from "react-router-dom";
+import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
+import { updateAdministradorRequest } from "../api/administrador.api";
+import Swal from "sweetalert2";
 
 const DetallesAdministradores = () => {
   const [administrador, setAdministrador] = useState({});
   const params = useParams();
 
   const loadAdministrador = async (id) => {
-    const res = await getAdministradorRequest(id);
+    try {
+      const res = await getAdministradorRequest(id);
 
-    const admin = {
-      nombres: res.data.nombres,
-      apellidos: res.data.apellidos,
-      telefono: res.data.telefono,
-      fechaNacimiento: res.data.fecha_nacimiento.split("T")[0],
-      email: res.data.email,
-    };
+      const admin = {
+        id: res.data.id,
+        nombres: res.data.nombres,
+        apellidos: res.data.apellidos,
+        telefono: res.data.telefono,
+        fechaNacimiento: res.data.fecha_nacimiento.split("T")[0],
+        email: res.data.email,
+      };
 
-    setAdministrador(admin);
+      setAdministrador(admin);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     loadAdministrador(params.id);
   });
+
   return (
     <div id="wapper">
       <Navbar />
@@ -61,7 +70,44 @@ const DetallesAdministradores = () => {
                 telefono: administrador.telefono,
                 fechaNacimiento: administrador.fechaNacimiento,
                 email: administrador.email,
-                password: administrador.password,
+                password: "",
+              }}
+              validationSchema={editAdministradorSchema}
+              onSubmit={(values, { setSubmitting }) => {
+                const handleSubmit = async () => {
+                  Swal.fire({
+                    title: "Editar el administrador",
+                    icon: "question",
+                    showDenyButton: true,
+                    confirmButtonText: "Editar",
+                    denyButtonText: "Cancelar",
+                  }).then(async (result) => {
+                    try {
+                      if (result.isConfirmed) {
+                        // const response = await updateAdministradorRequest(
+                        //   values
+                        // );
+
+                        // if (response.status === 201) {
+                        //   Swal.fire({
+                        //     title: "Cliente creado con exito",
+                        //     icon: "success",
+                        //   });
+                        // }
+                        console.log(values);
+                      }
+                    } catch (error) {
+                      console.error(error);
+                      Swal.fire({
+                        title: "Hubo un error",
+                        icon: "error",
+                      });
+                    }
+                  });
+                };
+
+                handleSubmit();
+                setSubmitting(false);
               }}
             >
               {({ handleSubmit, isSubmitting }) => (
@@ -90,6 +136,9 @@ const DetallesAdministradores = () => {
                               placeholder="Saul Alexis"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="nombres" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -106,6 +155,9 @@ const DetallesAdministradores = () => {
                               placeholder="Perez Rincon"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="apellidos" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -132,6 +184,12 @@ const DetallesAdministradores = () => {
                               name="fechaNacimiento"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage
+                                type="date"
+                                name="fechaNacimiento"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -148,6 +206,9 @@ const DetallesAdministradores = () => {
                               placeholder={3314678934}
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="telefono" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -175,6 +236,9 @@ const DetallesAdministradores = () => {
                               placeholder="ejemplo@gmail.com"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="email" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -188,9 +252,11 @@ const DetallesAdministradores = () => {
                               className="form-control"
                               type="password"
                               name="password"
-                              required
                               placeholder="********"
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="password" />
+                            </div>
                           </div>
                         </div>
                       </div>
