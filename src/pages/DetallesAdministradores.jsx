@@ -89,14 +89,12 @@ const DetallesAdministradores = () => {
                           values
                         );
 
-                        console.log(response);
-
-                        // if (response.status === 201) {
-                        //   Swal.fire({
-                        //     title: "Cliente creado con exito",
-                        //     icon: "success",
-                        //   });
-                        // }
+                        if (response.status === 200) {
+                          Swal.fire({
+                            title: "Administrador editado con exito",
+                            icon: "success",
+                          });
+                        }
                       }
                     } catch (error) {
                       console.error(error);
