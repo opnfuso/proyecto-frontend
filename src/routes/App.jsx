@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
+import CreateAdministrador from "../pages/CreateAdministrador";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
@@ -29,6 +30,7 @@ function App() {
             path="/administradores/:id"
             element={<DetallesAdministradores />}
           />
+          <Route path="/new/administrador" element={<CreateAdministrador />} />
           <Route path="/clientes" element={<VistaClientes />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/crear-dispositivo" element={<CreateDispositivo />} />

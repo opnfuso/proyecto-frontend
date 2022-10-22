@@ -23,7 +23,7 @@ const SeleccionUsuarios = () => {
           id="container-buttons"
           style={{ width: 369, margin: "auto auto" }}
         >
-          <div className="row">
+          <div className="row" style={{ marginBottom: 30 }}>
             <div className="col-md-12">
               <Link
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
@@ -33,7 +33,7 @@ const SeleccionUsuarios = () => {
               </Link>
             </div>
           </div>
-          <div className="row">
+          <div className="row" style={{ marginBottom: 30 }}>
             <div className="col-md-12">
               <Link
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"

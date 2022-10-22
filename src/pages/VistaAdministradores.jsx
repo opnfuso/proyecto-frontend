@@ -3,6 +3,7 @@ import Navbar from "../containers/Navbar";
 import { getAdministradoresRequest } from "../api/administrador.api";
 import ListAdministradores from "../containers/ListAdministradores";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const VistaAdministradores = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -34,9 +35,12 @@ const VistaAdministradores = () => {
                   Admins
                 </span>
               </div>
-              <a className="btn btn-primary btn-agregar-usuario" href="#">
+              <Link
+                to="/new/administrador"
+                className="btn btn-primary btn-agregar-usuario"
+              >
                 Agregar nuevo +
-              </a>
+              </Link>
             </div>
           </nav>
           <div className="container-fluid">
