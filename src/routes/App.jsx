@@ -7,6 +7,7 @@ import CreateAdministrador from "../pages/CreateAdministrador";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
+import Refacciones from "../pages/Refacciones";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaClientes from "../pages/VistaClientes";
@@ -33,8 +34,9 @@ function App() {
           <Route path="/new/administrador" element={<CreateAdministrador />} />
           <Route path="/clientes" element={<VistaClientes />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
-          <Route path="/crear-dispositivo" element={<CreateDispositivo />} />
-          <Route path="/crear-cliente" element={<CreateCliente />} />
+          <Route path="/new/dispositivo" element={<CreateDispositivo />} />
+          <Route path="/new/cliente" element={<CreateCliente />} />
+          <Route path="/refacciones" element={<Refacciones />} />
         </Routes>
       </Layout>
     </BrowserRouter>

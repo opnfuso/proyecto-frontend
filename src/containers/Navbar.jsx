@@ -68,10 +68,10 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link to="/refacciones" className="nav-link">
                 <i className="typcn typcn-spanner-outline" />
                 <span>Refacciones</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <div
