@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function ItemCliente(props) {
   return (
@@ -10,15 +11,16 @@ function ItemCliente(props) {
       <td>{props.telefono}</td>
       <td>{props.domicilio}</td>
       <td>
-        <a href="#">
+        <Link to={`${props.id}`}>
           <i className="fas fa-edit" />
-        </a>
+        </Link>
       </td>
     </tr>
   );
 }
 
 ItemCliente.propTypes = {
+  id: PropTypes.string,
   nombres: PropTypes.string,
   apellidos: PropTypes.string,
   telefono: PropTypes.string,

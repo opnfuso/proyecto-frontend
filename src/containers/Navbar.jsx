@@ -37,10 +37,10 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link to="/perfil" className="nav-link">
                 <i className="fas fa-user" style={{ width: 15, height: 15 }} />
                 <span>Perfil</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">

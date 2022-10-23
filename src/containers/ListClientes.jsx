@@ -19,6 +19,7 @@ function ListClientes({ clientes }) {
         {clientes.map((cliente) => (
           <ItemCliente
             key={cliente.id}
+            id={cliente.id}
             nombres={cliente.nombres}
             apellidos={cliente.apellidos}
             fechaNacimiento={cliente.fecha_nacimiento_string}

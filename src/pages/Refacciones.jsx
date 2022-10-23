@@ -1,16 +1,29 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../containers/Navbar";
 import { getRefaccionesRequest } from "../api/refacciones.api";
+import PropTypes from "prop-types";
 
-function Refacciones() {
+function Refacciones({ query }) {
   const [refacciones, setRefacciones] = useState([]);
   const refQuery = useRef("");
 
-  const getRefacciones = async () => {
+  const getRefaccionesRef = async () => {
     const res = await getRefaccionesRequest(refQuery.current.value);
 
     setRefacciones(res.data.data.organic);
   };
+
+  const getRefaccionesProps = async () => {
+    const res = await getRefaccionesRequest(query);
+
+    setRefacciones(res.data.data.organic);
+  };
+
+  useEffect(() => {
+    if (query) {
+      getRefaccionesProps();
+    }
+  });
 
   return (
     <div id="wapper">
@@ -50,7 +63,7 @@ function Refacciones() {
                           style={{ left: "-30px", color: "#7e92a2" }}
                         />
                         <button
-                          onClick={getRefacciones}
+                          onClick={getRefaccionesRef}
                           type="button"
                           className="btn btn-primary"
                         >
@@ -77,5 +90,9 @@ function Refacciones() {
     </div>
   );
 }
+
+Refacciones.propTypes = {
+  query: PropTypes.string,
+};
 
 export default Refacciones;
