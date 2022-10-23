@@ -10,7 +10,7 @@ function ItemDispositivo(props) {
       <td>{props.numero_serie}</td>
       <td>{props.fecha_recibido}</td>
       <td>
-        <a href="detalles-dispositivo.html">
+        <a href="#">
           <i className="fas fa-edit" />
         </a>
       </td>

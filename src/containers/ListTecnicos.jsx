@@ -18,6 +18,7 @@ function ListTecnicos({ tecnicos }) {
       <tbody>
         {tecnicos.map((tecnico) => (
           <ItemTecnico
+            id={tecnico.id}
             key={tecnico.id}
             nombres={tecnico.nombres}
             apellidos={tecnico.apellidos}

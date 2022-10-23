@@ -9,6 +9,7 @@ import CreateDispositivo from "../pages/CreateDispositivo";
 import CreateReparacion from "../pages/CreateReparacion";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
+import DetallesTecnico from "../pages/DetallesTecnico";
 import Diagnosticador from "../pages/Diagnosticador";
 import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
 import Manual from "../pages/Manual";
@@ -47,6 +48,7 @@ function App() {
             element={<VistaDispositivos />}
           />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
+          <Route path="/tecnicos/:id" element={<DetallesTecnico />} />
           <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/new/cliente" element={<CreateCliente />} />
           <Route path="/refacciones" element={<Refacciones />} />
