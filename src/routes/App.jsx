@@ -8,6 +8,8 @@ import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
+import Diagnosticador from "../pages/Diagnosticador";
+import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
 import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
@@ -46,6 +48,11 @@ function App() {
           <Route path="/new/cliente" element={<CreateCliente />} />
           <Route path="/refacciones" element={<Refacciones />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/diagnosticador" element={<Diagnosticador />} />
+          <Route
+            path="/diagnosticador/general"
+            element={<DiagnosticadorGeneral />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>
