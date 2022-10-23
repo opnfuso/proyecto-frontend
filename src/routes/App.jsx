@@ -10,6 +10,7 @@ import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
 import Diagnosticador from "../pages/Diagnosticador";
 import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
+import Manual from "../pages/Manual";
 import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
@@ -53,6 +54,7 @@ function App() {
             path="/diagnosticador/general"
             element={<DiagnosticadorGeneral />}
           />
+          <Route path="/manual" element={<Manual />} />
         </Routes>
       </Layout>
     </BrowserRouter>

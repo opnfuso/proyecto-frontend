@@ -62,10 +62,10 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link to="/manual" className="nav-link" href="#">
                 <i className="icon ion-ios-bookmarks" />
                 <span>Manual</span>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <Link to="/refacciones" className="nav-link">
