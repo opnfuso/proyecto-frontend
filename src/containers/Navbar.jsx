@@ -36,12 +36,12 @@ const Navbar = () => {
                 <span>Usuarios</span>
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/perfil" className="nav-link">
                 <i className="fas fa-user" style={{ width: 15, height: 15 }} />
                 <span>Perfil</span>
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to="/diagnosticador" className="nav-link" href="#">
                 <svg
