@@ -4,7 +4,7 @@ import Cover from "../assets/img/Cover.png";
 import Avatar from "../assets/img/Avatar Wrapper.png";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getClienteRequest, updateClienteRequest } from "../api/cliente.api";
 
 function DetallesCliente() {
@@ -235,12 +235,13 @@ function DetallesCliente() {
                         >
                           Guardar
                         </button>
-                        <a
+                        <Link
+                          to="dispositivos"
                           className="btn btn-primary btn-detalles"
                           href="vista-dispositivos.html"
                         >
                           Ir a dispositivos
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

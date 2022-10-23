@@ -13,6 +13,7 @@ import Refacciones from "../pages/Refacciones";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaClientes from "../pages/VistaClientes";
+import VistaDispositivos from "../pages/VistaDispositivos";
 import VistaTecnicos from "../pages/VistaTecnicos";
 import "../styles/styles.css";
 
@@ -36,6 +37,10 @@ function App() {
           <Route path="/new/administrador" element={<CreateAdministrador />} />
           <Route path="/clientes" element={<VistaClientes />} />
           <Route path="/clientes/:id" element={<DetallesCliente />} />
+          <Route
+            path="/clientes/:id/dispositivos"
+            element={<VistaDispositivos />}
+          />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/new/cliente" element={<CreateCliente />} />
