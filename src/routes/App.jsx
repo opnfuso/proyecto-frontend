@@ -6,6 +6,7 @@ import Navbar from "../containers/Navbar";
 import CreateAdministrador from "../pages/CreateAdministrador";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
+import CreateReparacion from "../pages/CreateReparacion";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
 import Diagnosticador from "../pages/Diagnosticador";
@@ -56,6 +57,7 @@ function App() {
             element={<DiagnosticadorGeneral />}
           />
           <Route path="/manual" element={<Manual />} />
+          <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
         </Routes>
       </Layout>

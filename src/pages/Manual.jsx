@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ListReparaciones from "../containers/ListReparaciones";
 import Navbar from "../containers/Navbar";
 import { getManualReparacionesReparacionesByTitleRequest } from "../api/manual.api";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function Manual() {
   const [manuales, setManuales] = useState([]);
@@ -40,9 +40,13 @@ function Manual() {
                   Manual de reparaciones
                 </span>
               </div>
-              <a className="btn btn-primary btn-agregar-usuario" href="#">
+              <Link
+                to="/new/manual"
+                className="btn btn-primary btn-agregar-usuario"
+                href="#"
+              >
                 Ingresar reparacion +
-              </a>
+              </Link>
             </div>
           </nav>
           <div className="container-fluid">
