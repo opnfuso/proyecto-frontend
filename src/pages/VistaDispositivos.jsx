@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ListDispositivos from "../containers/ListDispositivos";
 import Navbar from "../containers/Navbar";
-import { getDispositivosRequest } from "../api/dispositivo.api";
+import { getDispositivoByClienteIdRequest } from "../api/dispositivo.api";
+import { useParams } from "react-router-dom";
 
 function VistaDispositivos() {
   const [dispositivos, setDispositivos] = useState([]);
+  const params = useParams();
 
   const getDispositivos = async () => {
-    const res = await getDispositivosRequest();
+    const res = await getDispositivoByClienteIdRequest(params.id);
 
     setDispositivos(res.data);
   };

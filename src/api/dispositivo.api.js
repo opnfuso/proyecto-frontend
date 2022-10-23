@@ -6,6 +6,11 @@ export const getDispositivosRequest = async () =>
 export const getDispositivoRequest = async (id) =>
   await axios.get(`${process.env.REACT_APP_API_URL}/dispositivos/${id}`);
 
+export const getDispositivoByClienteIdRequest = async (id) =>
+  await axios.get(
+    `${process.env.REACT_APP_API_URL}/dispositivos/cliente/${id}`
+  );
+
 export const createDispositivoRequest = async (dispositivo) =>
   await axios.post(
     `${process.env.REACT_APP_API_URL}/dispositivos`,
