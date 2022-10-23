@@ -31,10 +31,7 @@ const VistaClientes = () => {
                   Clientes
                 </span>
               </div>
-              <a
-                className="btn btn-primary btn-agregar-usuario"
-                href="registro-cliente.html"
-              >
+              <a className="btn btn-primary btn-agregar-usuario" href="#">
                 Agregar nuevo +
               </a>
             </div>
