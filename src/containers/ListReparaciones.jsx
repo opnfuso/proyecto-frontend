@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function ListReparaciones({ reparaciones }) {
   return (
     <div className="d-flex flex-column">
       {reparaciones.map((reparacion) => {
         return (
-          <a key={reparacion.id} className="my-1" href="#">
+          <Link
+            to={`${reparacion.id}`}
+            key={reparacion.id}
+            className="my-1"
+            href="#"
+          >
             {reparacion.titulo}
-          </a>
+          </Link>
         );
       })}
     </div>

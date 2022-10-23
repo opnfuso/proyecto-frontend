@@ -13,6 +13,7 @@ import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
 import Manual from "../pages/Manual";
 import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
+import Reparacion from "../pages/Reparacion";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaClientes from "../pages/VistaClientes";
@@ -55,6 +56,7 @@ function App() {
             element={<DiagnosticadorGeneral />}
           />
           <Route path="/manual" element={<Manual />} />
+          <Route path="/manual/:id" element={<Reparacion />} />
         </Routes>
       </Layout>
     </BrowserRouter>
