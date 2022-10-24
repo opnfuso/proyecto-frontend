@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListTecnicos from "../containers/ListTecnicos";
 import Navbar from "../containers/Navbar";
 import { getTecnicosRequest } from "../api/tecnico.api";
+import { Link } from "react-router-dom";
 
 const VistaTecnicos = () => {
   const [tecnicos, setTecnicos] = useState([]);
@@ -31,9 +32,13 @@ const VistaTecnicos = () => {
                   Tecnicos
                 </span>
               </div>
-              <a className="btn btn-primary btn-agregar-usuario" href="#">
+              <Link
+                to="/new/tecnico"
+                className="btn btn-primary btn-agregar-usuario"
+                href="#"
+              >
                 Agregar nuevo +
-              </a>
+              </Link>
             </div>
           </nav>
           <div className="container-fluid">
