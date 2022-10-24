@@ -23,10 +23,10 @@ const CreateCliente = () => {
         <div className="col-md-6 register-container d-flex flex-column justify-content-center align-items-center">
           <Formik
             initialValues={{
-              nombre: "",
+              nombres: "",
               apellidos: "",
               domicilio: "",
-              nacimiento: "",
+              fecha_nacimiento: "",
               telefono: "",
             }}
             onSubmit={(values, { setSubmitting }) => {
@@ -40,15 +40,14 @@ const CreateCliente = () => {
                 }).then(async (result) => {
                   try {
                     if (result.isConfirmed) {
-                      // const response = await createClienteRequest(values);
+                      const response = await createClienteRequest(values);
 
-                      // if (response.status === 201) {
-                      //   Swal.fire({
-                      //     title: "Cliente creado con exito",
-                      //     icon: "success",
-                      //   });
-                      // }
-                      console.log(values);
+                      if (response.status === 201) {
+                        Swal.fire({
+                          title: "Cliente creado con exito",
+                          icon: "success",
+                        });
+                      }
                     }
                   } catch (error) {
                     console.error(error);
@@ -92,7 +91,7 @@ const CreateCliente = () => {
                           <Field
                             className="form-control"
                             type="text"
-                            name="nombre"
+                            name="nombres"
                             placeholder="Saul Alexis"
                             required
                           />
@@ -171,11 +170,11 @@ const CreateCliente = () => {
                           <Field
                             className="form-control"
                             type="date"
-                            name="nacimiento"
+                            name="fecha_nacimiento"
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="date" name="nacimiento" />
+                            <ErrorMessage type="date" name="fecha_nacimiento" />
                           </div>
                         </div>
                       </div>
@@ -224,7 +223,7 @@ const CreateCliente = () => {
           <img src={img} style={{ width: 350 }} alt="Person" />
         </div>
       </div>
-      <Link to={"/"} className="position-absolute top-0 m-2">
+      <Link to={"/clientes"} className="position-absolute top-0 m-2">
         <img src={logo} alt="Logo" />
       </Link>
     </div>

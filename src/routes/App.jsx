@@ -48,11 +48,11 @@ function App() {
             path="/clientes/:id/dispositivos"
             element={<VistaDispositivos />}
           />
+          <Route path="/new/cliente" element={<CreateCliente />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/tecnicos/:id" element={<DetallesTecnico />} />
           <Route path="/new/tecnico" element={<CreateTecnico />} />
           <Route path="/new/dispositivo" element={<CreateDispositivo />} />
-          <Route path="/new/cliente" element={<CreateCliente />} />
           <Route path="/refacciones" element={<Refacciones />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/diagnosticador" element={<Diagnosticador />} />
