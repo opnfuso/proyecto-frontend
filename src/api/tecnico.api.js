@@ -12,5 +12,8 @@ export const createTecnicoRequest = async (tecnico) =>
 export const updateTecnicoRequest = async (id, tecnico) =>
   await axios.patch(`${process.env.REACT_APP_API_URL}/tecnicos/${id}`, tecnico);
 
-export const deleteTecnicoRequeste = async (id) =>
+export const deleteTecnicoRequest = async (id) =>
   await axios.delete(`${process.env.REACT_APP_API_URL}/tecnicos/${id}`);
+
+export const activateTecnicoRequest = async (id) =>
+  await axios.patch(`${process.env.REACT_APP_API_URL}/tecnicos/activate/${id}`);

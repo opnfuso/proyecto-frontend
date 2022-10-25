@@ -3,7 +3,12 @@ import Navbar from "../containers/Navbar";
 import avatar from "../assets/img/Avatar Wrapper.png";
 import cover from "../assets/img/Cover.png";
 import { useParams } from "react-router-dom";
-import { getTecnicoRequest, updateTecnicoRequest } from "../api/tecnico.api";
+import {
+  activateTecnicoRequest,
+  deleteTecnicoRequest,
+  getTecnicoRequest,
+  updateTecnicoRequest,
+} from "../api/tecnico.api";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
 
@@ -22,12 +27,71 @@ function DetallesTecnico() {
         telefono: res.data.telefono,
         fecha_nacimiento: res.data.fecha_nacimiento.split("T")[0],
         email: res.data.email,
+        activo: res.data.activo,
       };
 
       setTecnico(tecnico);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleActivate = async () => {
+    Swal.fire({
+      title: "Activar el tecnico",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Activar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      try {
+        if (result.isConfirmed) {
+          const response = await activateTecnicoRequest(tecnico.id);
+
+          if (response.status === 200) {
+            Swal.fire({
+              title: "Tecnico activado con exito",
+              icon: "success",
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          title: "Hubo un error",
+          icon: "error",
+        });
+      }
+    });
+  };
+
+  const handleDeactivate = async () => {
+    Swal.fire({
+      title: "Desactivar el tecnico",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Desactivar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      try {
+        if (result.isConfirmed) {
+          const response = await deleteTecnicoRequest(tecnico.id);
+
+          if (response.status === 200) {
+            Swal.fire({
+              title: "Tecnico desactivado con exito",
+              icon: "success",
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          title: "Hubo un error",
+          icon: "error",
+        });
+      }
+    });
   };
 
   useEffect(() => {
@@ -251,9 +315,21 @@ function DetallesTecnico() {
                         >
                           Guardar
                         </button>
-                        <div className="btn btn-primary btn-detalles">
-                          Desactivar
-                        </div>
+                        {tecnico.activo ? (
+                          <div
+                            onClick={handleDeactivate}
+                            className="btn btn-primary btn-detalles"
+                          >
+                            Desactivar
+                          </div>
+                        ) : (
+                          <div
+                            onClick={handleActivate}
+                            className="btn btn-primary btn-detalles"
+                          >
+                            Activar
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
