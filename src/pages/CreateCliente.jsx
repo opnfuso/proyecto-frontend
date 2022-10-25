@@ -189,7 +189,7 @@ const CreateCliente = () => {
                             className="form-control"
                             type="tel"
                             name="telefono"
-                            placeholder={3314678934}
+                            placeholder="+523314678934"
                             required
                           />
                           <div style={{ color: "red" }}>
