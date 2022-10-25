@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import image from "../assets/img/seated businessman in dark blue suit with laptop.png";
 import logo from "../assets/img/Logo.png";
+import { Formik } from "formik";
 
 function CreateTecnico() {
   return (
@@ -17,6 +18,16 @@ function CreateTecnico() {
     >
       <div className="row vh-100">
         <div className="col-md-6 register-container d-flex flex-column justify-content-center align-items-center">
+          {/* <Formik
+            initialValues={{
+              nombres: "",
+              apellidos: "",
+              fecha_nacimiento: "",
+              telefono: "",
+              email: "",
+              password: "",
+            }}
+          ></Formik> */}
           <form>
             <div>
               <div className="row">
