@@ -97,7 +97,7 @@ function CreateTecnico() {
                       <input
                         className="form-control"
                         type="date"
-                        name="nacimiento"
+                        name="fecha_nacimiento"
                         required
                       />
                     </div>
