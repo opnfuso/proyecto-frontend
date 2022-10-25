@@ -9,8 +9,8 @@ function ListAdministradores({ administradores }) {
         <tr>
           <th>Nombres</th>
           <th>Apellidos</th>
-          <th>Telefono</th>
           <th>Fecha de nacimiento</th>
+          <th>Telefono</th>
           <th>Editar</th>
         </tr>
       </thead>
