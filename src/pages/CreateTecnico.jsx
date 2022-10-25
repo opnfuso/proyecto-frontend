@@ -146,7 +146,7 @@ function CreateTecnico() {
                         type="password"
                         name="password"
                         required
-                        placeholder="********"
+                        placeholder="*********"
                       />
                     </div>
                   </div>
