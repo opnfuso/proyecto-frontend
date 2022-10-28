@@ -10,6 +10,7 @@ import CreateReparacion from "../pages/CreateReparacion";
 import CreateTecnico from "../pages/CreateTecnico";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
+import DetallesDispositivo from "../pages/DetallesDispositivo";
 import DetallesTecnico from "../pages/DetallesTecnico";
 import Diagnosticador from "../pages/Diagnosticador";
 import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
@@ -48,11 +49,15 @@ function App() {
             path="/clientes/:id/dispositivos"
             element={<VistaDispositivos />}
           />
+          <Route
+            path="/clientes/:id/dispositivos/:id2"
+            element={<DetallesDispositivo />}
+          />
+          <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/new/cliente" element={<CreateCliente />} />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/tecnicos/:id" element={<DetallesTecnico />} />
           <Route path="/new/tecnico" element={<CreateTecnico />} />
-          <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/refacciones" element={<Refacciones />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/diagnosticador" element={<Diagnosticador />} />

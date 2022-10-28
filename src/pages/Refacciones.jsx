@@ -10,13 +10,13 @@ function Refacciones({ query }) {
   const getRefaccionesRef = async () => {
     const res = await getRefaccionesRequest(refQuery.current.value);
 
-    setRefacciones(res.data.data.organic);
+    setRefacciones(res.data.data.organic_results);
   };
 
   const getRefaccionesProps = async () => {
     const res = await getRefaccionesRequest(query);
 
-    setRefacciones(res.data.data.organic);
+    setRefacciones(res.data.data.organic_results);
   };
 
   useEffect(() => {

@@ -18,8 +18,7 @@ function ListDispositivos({ dispositivos }) {
       <tbody>
         {dispositivos.map((dispositivo) => (
           <ItemDispositivo
-            id={dispositivo.id}
-            key={dispositivo.id}
+            key={dispositivo.imei}
             fecha_recibido={dispositivo.fecha_recibido_string}
             imei={dispositivo.imei}
             marca={dispositivo.marca}

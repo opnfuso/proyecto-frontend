@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function ItemDispositivo(props) {
   return (
@@ -10,9 +11,9 @@ function ItemDispositivo(props) {
       <td>{props.numero_serie}</td>
       <td>{props.fecha_recibido}</td>
       <td>
-        <a href="#">
+        <Link to={`${props.imei}`}>
           <i className="fas fa-edit" />
-        </a>
+        </Link>
       </td>
     </tr>
   );
