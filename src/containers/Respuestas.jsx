@@ -7,15 +7,23 @@ function Respuestas({ respuestas }) {
     <div className="d-flex w-100 my-4 justify-content-center flex-wrap">
       {respuestas ? (
         respuestas.map((respuesta) => {
-          return (
-            <Link
-              to={`/diagnosticador/${respuesta.siguiente_pregunta}`}
-              className="btn btn-primary btn-diag"
-              type="button"
-            >
-              {respuesta.text}
-            </Link>
-          );
+          if (respuesta.siguiente_pregunta) {
+            return (
+              <Link
+                to={`/diagnosticador/${respuesta.siguiente_pregunta}`}
+                className="btn btn-primary btn-diag"
+                type="button"
+              >
+                {respuesta.text}
+              </Link>
+            );
+          } else {
+            return (
+              <button className="btn btn-primary btn-diag" type="button">
+                {respuesta.text}
+              </button>
+            );
+          }
         })
       ) : (
         <></>

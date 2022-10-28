@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import { checkRole } from "../api/auth.api";
 import Pregunta from "../containers/Pregunta";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getRespuestasByPreguntaIdRequest } from "../api/respuestas.api";
 import { getPreguntaByIdRequest } from "../api/pregunta.api";
 
@@ -59,13 +59,14 @@ function DiagnosticadorGeneral() {
                 </span>
               </div>
               {isSoporte ? (
-                <button
+                <Link
+                  to={`/diagnosticador/new/${pregunta._id}`}
                   className="btn btn-primary"
                   type="button"
                   style={{ background: "#514ef3" }}
                 >
                   Agregar nueva respuesta +
-                </button>
+                </Link>
               ) : (
                 <></>
               )}

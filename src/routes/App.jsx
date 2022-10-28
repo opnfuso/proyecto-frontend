@@ -7,6 +7,7 @@ import CreateAdministrador from "../pages/CreateAdministrador";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
 import CreateReparacion from "../pages/CreateReparacion";
+import CreateRespuesta from "../pages/CreateRespuesta";
 import CreateTecnico from "../pages/CreateTecnico";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
 import DetallesCliente from "../pages/DetallesCliente";
@@ -65,6 +66,7 @@ function App() {
             path="/diagnosticador/:id"
             element={<DiagnosticadorGeneral />}
           />
+          <Route path="/diagnosticador/new/:id" element={<CreateRespuesta />} />
           <Route path="/manual" element={<Manual />} />
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
