@@ -57,7 +57,7 @@ function App() {
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/diagnosticador" element={<Diagnosticador />} />
           <Route
-            path="/diagnosticador/general"
+            path="/diagnosticador/:id"
             element={<DiagnosticadorGeneral />}
           />
           <Route path="/manual" element={<Manual />} />

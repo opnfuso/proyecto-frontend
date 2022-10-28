@@ -75,9 +75,8 @@ function Diagnosticador() {
           <div className="row">
             <div className="col-md-12">
               <Link
-                to="general"
+                to="633b146d4db46330d41ad1c0"
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                href="vista-admins.html"
                 style={{ marginBottom: 30 }}
               >
                 Iniciar diagnostico

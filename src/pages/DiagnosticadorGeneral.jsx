@@ -9,10 +9,10 @@ import { useParams } from "react-router-dom";
 
 function DiagnosticadorGeneral() {
   const [isSoporte, setIsSoporte] = useState(false);
-  const [containsParams, setContainsParams] = useState(false);
+  const [containsQueryParams, setContainsQueryParams] = useState(false);
   const { user, isAuthenticated } = useAuth0();
 
-  const params = useParams();
+  const query = useParams();
 
   const check = async (claim) => {
     const res = await checkRole(claim.sub, "Soporte");
@@ -24,10 +24,10 @@ function DiagnosticadorGeneral() {
       check(user);
     }
 
-    if (params && params.id) {
-      setContainsParams(true);
+    if (query && query.id) {
+      setContainsQueryParams(true);
     }
-  }, [isAuthenticated, params, user]);
+  }, [isAuthenticated, query, user]);
 
   return (
     <div id="wapper">
@@ -48,7 +48,7 @@ function DiagnosticadorGeneral() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {containsParams ? <DiagnosticoSelector /> : <></>}
+          {containsQueryParams ? <DiagnosticoSelector /> : <></>}
         </div>
         <Pregunta />
       </div>
