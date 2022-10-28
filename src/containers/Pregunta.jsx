@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import Respuestas from "./Respuestas";
 
-function Pregunta(props) {
+function Pregunta({ pregunta, respuestas }) {
   return (
     <div className="w-100 h-100 d-flex align-items-center justify-content-center flex-column">
       <label
@@ -12,20 +14,16 @@ function Pregunta(props) {
           fontWeight: "bold",
         }}
       >
-        Que sistema operativo tiene?
+        {pregunta.text}
       </label>
-      <div className="d-flex w-100 my-4 justify-content-center flex-wrap">
-        <button className="btn btn-primary btn-diag" type="button">
-          iOS
-        </button>
-        <button className="btn btn-primary btn-diag" type="button">
-          Android
-        </button>
-      </div>
+      <Respuestas respuestas={respuestas} key={pregunta._id} />
     </div>
   );
 }
 
-Pregunta.propTypes = {};
+Pregunta.propTypes = {
+  pregunta: PropTypes.object,
+  respuestas: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default Pregunta;
