@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListDispositivos from "../containers/ListDispositivos";
 import Navbar from "../containers/Navbar";
 import { getDispositivoByClienteIdRequest } from "../api/dispositivo.api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function VistaDispositivos() {
   const [dispositivos, setDispositivos] = useState([]);
@@ -30,12 +30,13 @@ function VistaDispositivos() {
                   Dispositivos
                 </span>
               </div>
-              <a
+              <Link
+                to="/new/dispositivo"
                 className="btn btn-primary btn-agregar-usuario"
                 href="registro-dispositivo.html"
               >
                 Agregar nuevo +
-              </a>
+              </Link>
             </div>
           </nav>
           <div className="container-fluid">
