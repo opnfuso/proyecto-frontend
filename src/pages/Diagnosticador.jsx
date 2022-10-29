@@ -85,12 +85,12 @@ function Diagnosticador() {
           </div>
           <div className="row">
             <div className="col-md-12">
-              <a
+              <Link
+                to="/diagnosticador-rapido"
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                href="diagnostico-rapido.html"
               >
                 Llenado rapido
-              </a>
+              </Link>
             </div>
           </div>
         </div>

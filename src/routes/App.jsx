@@ -15,6 +15,7 @@ import DetallesDispositivo from "../pages/DetallesDispositivo";
 import DetallesTecnico from "../pages/DetallesTecnico";
 import Diagnosticador from "../pages/Diagnosticador";
 import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
+import DiagnosticoRapido from "../pages/DiagnosticoRapido";
 import Manual from "../pages/Manual";
 import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
@@ -67,6 +68,10 @@ function App() {
             element={<DiagnosticadorGeneral />}
           />
           <Route path="/diagnosticador/new/:id" element={<CreateRespuesta />} />
+          <Route
+            path="/diagnosticador-rapido"
+            element={<DiagnosticoRapido />}
+          />
           <Route path="/manual" element={<Manual />} />
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
