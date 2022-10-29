@@ -23,6 +23,7 @@ import Reparacion from "../pages/Reparacion";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
 import ViewRespuesta from "../pages/ViewRespuesta";
 import VistaAdministradores from "../pages/VistaAdministradores";
+import VistaBitacoras from "../pages/VistaBitacoras";
 import VistaClientes from "../pages/VistaClientes";
 import VistaDispositivos from "../pages/VistaDispositivos";
 import VistaTecnicos from "../pages/VistaTecnicos";
@@ -58,6 +59,10 @@ function App() {
           />
           <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/new/cliente" element={<CreateCliente />} />
+          <Route
+            path="/clientes/:id/dispositivos/:id2/bitacoras"
+            element={<VistaBitacoras />}
+          />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/tecnicos/:id" element={<DetallesTecnico />} />
           <Route path="/new/tecnico" element={<CreateTecnico />} />

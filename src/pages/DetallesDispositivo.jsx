@@ -3,7 +3,7 @@ import Navbar from "../containers/Navbar";
 import Cover from "../assets/img/Cover.png";
 import Avatar from "../assets/img/Avatar Wrapper.png";
 import { Field, Formik } from "formik";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   getDispositivoRequest,
   updateDispositivoRequest,
@@ -236,9 +236,12 @@ function DetallesDispositivo() {
                         >
                           Guardar
                         </button>
-                        <a className="btn btn-primary btn-detalles" href="#">
+                        <Link
+                          to="bitacoras"
+                          className="btn btn-primary btn-detalles"
+                        >
                           Ir a bitacoras
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -75,7 +75,7 @@ function ViewRespuesta() {
           >
             {respuesta.text}
           </label>
-          <ListSoluciones soluciones={soluciones} />
+          <ListSoluciones key={respuesta._id} soluciones={soluciones} />
         </div>
       </div>
     </div>
