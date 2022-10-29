@@ -19,9 +19,13 @@ function Respuestas({ respuestas }) {
             );
           } else {
             return (
-              <button className="btn btn-primary btn-diag" type="button">
+              <Link
+                to={`/respuesta/${respuesta._id}`}
+                className="btn btn-primary btn-diag"
+                type="button"
+              >
                 {respuesta.text}
-              </button>
+              </Link>
             );
           }
         })

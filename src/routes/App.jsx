@@ -21,6 +21,7 @@ import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
 import Reparacion from "../pages/Reparacion";
 import SeleccionUsuarios from "../pages/SeleccionUsuarios";
+import ViewRespuesta from "../pages/ViewRespuesta";
 import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaClientes from "../pages/VistaClientes";
 import VistaDispositivos from "../pages/VistaDispositivos";
@@ -72,6 +73,7 @@ function App() {
             path="/diagnosticador-rapido"
             element={<DiagnosticoRapido />}
           />
+          <Route path="/respuesta/:id" element={<ViewRespuesta />} />
           <Route path="/manual" element={<Manual />} />
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
