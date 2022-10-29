@@ -2,13 +2,32 @@ import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../containers/Navbar";
 import { getRefaccionesRequest } from "../api/refacciones.api";
 import PropTypes from "prop-types";
+import Select from "react-select";
 
 function Refacciones({ query }) {
   const [refacciones, setRefacciones] = useState([]);
+  const [pagina, setPagina] = useState("");
   const refQuery = useRef("");
 
+  const options = [
+    {
+      value: "site:amazon.com.mx",
+      label: "Amazon",
+    },
+    {
+      value: "site:mercadolibre.com.mx",
+      label: "Mercado Libre",
+    },
+    {
+      value: "site:aliexpress.com",
+      label: "Aliexpress",
+    },
+  ];
+
   const getRefaccionesRef = async () => {
-    const res = await getRefaccionesRequest(refQuery.current.value);
+    const res = await getRefaccionesRequest(
+      `${refQuery.current.value} ${pagina}`
+    );
 
     setRefacciones(res.data.data.organic_results);
   };
@@ -74,6 +93,12 @@ function Refacciones({ query }) {
                   </tbody>
                 </table>
               </div>
+              <Select
+                options={options}
+                isClearable={true}
+                onChange={(value) => setPagina(value.value)}
+                className="mb-2"
+              />
               <div id="refacciones" className="d-flex flex-column">
                 {refacciones.map((refaccion, index) => {
                   return (
