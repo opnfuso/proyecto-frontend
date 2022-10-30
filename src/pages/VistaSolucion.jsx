@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../containers/Navbar.jsx";
 import { getSolucionRequest } from "../api/solucion.api";
 import { useEffect } from "react";
 
 function VistaSolucion() {
-  const [solucion, setSolucion] = useState({});
+  const [solucion, setSolucion] = useState({ text: "" });
   const params = useParams();
 
   const getSolucion = async (id) => {
@@ -74,10 +74,13 @@ function VistaSolucion() {
               No funcionó
             </button>
           </div>
-          <button className="btn btn-primary btn-diag" type="button">
+          <Link
+            to={`/manual?titulo=${solucion.text.split("recomienda")[1]}`}
+            className="btn btn-primary btn-diag"
+            type="button"
+          >
             Ir al manual
-          </button>
-          {/* <ListSoluciones key={respuesta._id} soluciones={soluciones} /> */}
+          </Link>
         </div>
       </div>
     </div>

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../containers/Navbar";
 import { getSolucionesByPreguntaIdRequest } from "../api/solucion.api";
 import { getRespuestaByIdRequest } from "../api/respuestas.api";
 import ListSoluciones from "../containers/ListSoluciones";
+import { useAuth0 } from "@auth0/auth0-react";
+import { checkRole } from "../api/auth.api";
 
 function ViewRespuesta() {
   const params = useParams();
   const [soluciones, setSoluciones] = useState([]);
   const [respuesta, setRespuesta] = useState({});
+  const [isSoporte, setIsSoporte] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
+
+  const check = async (claim) => {
+    const res = await checkRole(claim.sub, "Soporte");
+    setIsSoporte(res.data.containsRole);
+  };
 
   const getSoluciones = async (id) => {
     const res = await getSolucionesByPreguntaIdRequest(id);
@@ -25,7 +34,11 @@ function ViewRespuesta() {
   useEffect(() => {
     getSoluciones(params.id);
     getRespuesta(params.id);
-  });
+
+    if (isAuthenticated) {
+      check(user);
+    }
+  }, [isAuthenticated, params, user]);
 
   return (
     <div id="wapper">
@@ -39,6 +52,18 @@ function ViewRespuesta() {
                   Diagnosticador
                 </span>
               </div>
+              {isSoporte ? (
+                <Link
+                  to={`/new/solucion/${respuesta._id}`}
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#514ef3" }}
+                >
+                  Agregar nueva solucion +
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
           </nav>
         </div>

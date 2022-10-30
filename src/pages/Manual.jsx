@@ -18,7 +18,9 @@ function Manual() {
 
       setManuales(res.data);
     } else if (titulo) {
-      const res = await getManualReparacionesReparacionesByTitleRequest(titulo);
+      const res = await getManualReparacionesReparacionesByTitleRequest(
+        titulo.trim()
+      );
 
       setManuales(res.data);
     }
