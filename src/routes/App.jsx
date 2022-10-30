@@ -26,6 +26,7 @@ import VistaAdministradores from "../pages/VistaAdministradores";
 import VistaBitacoras from "../pages/VistaBitacoras";
 import VistaClientes from "../pages/VistaClientes";
 import VistaDispositivos from "../pages/VistaDispositivos";
+import VistaSolucion from "../pages/VistaSolucion";
 import VistaTecnicos from "../pages/VistaTecnicos";
 import "../styles/styles.css";
 
@@ -79,6 +80,7 @@ function App() {
             element={<DiagnosticoRapido />}
           />
           <Route path="/respuesta/:id" element={<ViewRespuesta />} />
+          <Route path="/solucion/:id" element={<VistaSolucion />} />
           <Route path="/manual" element={<Manual />} />
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />

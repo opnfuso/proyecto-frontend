@@ -5,3 +5,7 @@ export const getSolucionesByPreguntaIdRequest = async (id) => {
     `${process.env.REACT_APP_API_URL}/soluciones/respuesta/${id}`
   );
 };
+
+export const getSolucionRequest = async (id) => {
+  return await axios.get(`${process.env.REACT_APP_API_URL}/soluciones/${id}`);
+};

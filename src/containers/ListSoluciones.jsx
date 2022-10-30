@@ -8,9 +8,13 @@ function ListSoluciones({ soluciones }) {
       {soluciones ? (
         soluciones.map((respuesta) => {
           return (
-            <button className="btn btn-primary btn-diag" type="button">
+            <Link
+              to={`/solucion/${respuesta._id}`}
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
               {respuesta.text}
-            </button>
+            </Link>
           );
         })
       ) : (
