@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function ItemBitacora({ bitacora }) {
   return (
@@ -7,9 +8,9 @@ function ItemBitacora({ bitacora }) {
       <td>{bitacora.terminado ? "Si" : "No"}</td>
       <td>{bitacora.dispositivo.fecha_recibido.split("T")[0]}</td>
       <td>
-        <a href="bitacora.html">
+        <Link to={`${bitacora.id}`}>
           <i className="fas fa-edit" />
-        </a>
+        </Link>
       </td>
     </tr>
   );

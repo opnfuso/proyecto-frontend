@@ -13,3 +13,10 @@ export const getBitacorasByDispositivoId = async (id) => {
 export const getBitacoraRequest = async (id) => {
   return await axios.get(`${process.env.REACT_APP_API_URL}/bitacoras/${id}`);
 };
+
+export const updateBitacoraRequest = async (id, bitacora) => {
+  return await axios.patch(
+    `${process.env.REACT_APP_API_URL}/bitacoras/${id}`,
+    bitacora
+  );
+};

@@ -11,8 +11,6 @@ function VistaBitacoras() {
   const getBitacoras = async (id) => {
     const res = await getBitacorasByDispositivoId(id);
 
-    console.log(res.data);
-
     setBitacoras(res.data);
   };
 

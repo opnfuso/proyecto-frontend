@@ -11,6 +11,7 @@ import CreateRespuesta from "../pages/CreateRespuesta";
 import CreateSolucion from "../pages/CreateSolucion";
 import CreateTecnico from "../pages/CreateTecnico";
 import DetallesAdministradores from "../pages/DetallesAdministradores";
+import DetallesBitacora from "../pages/DetallesBitacora";
 import DetallesCliente from "../pages/DetallesCliente";
 import DetallesDispositivo from "../pages/DetallesDispositivo";
 import DetallesTecnico from "../pages/DetallesTecnico";
@@ -64,6 +65,10 @@ function App() {
           <Route
             path="/clientes/:id/dispositivos/:id2/bitacoras"
             element={<VistaBitacoras />}
+          />
+          <Route
+            path="/clientes/:id/dispositivos/:id2/bitacoras/:id3"
+            element={<DetallesBitacora />}
           />
           <Route path="/tecnicos" element={<VistaTecnicos />} />
           <Route path="/tecnicos/:id" element={<DetallesTecnico />} />
