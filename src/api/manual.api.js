@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getManualReparacionesReparacionesRequest = async () =>
+export const getManualesReparacionesRequest = async () =>
   await axios.get(`${process.env.REACT_APP_API_URL}/manual-reparaciones`);
 
 export const getManualReparacionesReparacionesByTitleRequest = async (titulo) =>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ListBitacoras from "../containers/ListBitacoras.jsx";
 import Navbar from "../containers/Navbar.jsx";
 import { getBitacorasByDispositivoId } from "../api/bitacora.api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function VistaBitacoras() {
   const [bitacoras, setBitacoras] = useState([]);
@@ -30,9 +30,13 @@ function VistaBitacoras() {
                   Bitacoras
                 </span>
               </div>
-              <a className="btn btn-primary btn-agregar-usuario" href="#">
+              <Link
+                to="new"
+                className="btn btn-primary btn-agregar-usuario"
+                href="#"
+              >
                 Agregar nuevo +
-              </a>
+              </Link>
             </div>
           </nav>
           <div className="container-fluid">

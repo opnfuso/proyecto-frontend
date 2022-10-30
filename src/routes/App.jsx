@@ -4,6 +4,7 @@ import { ProtectedRoute } from "../components/ProtectedRoute";
 import Layout from "../containers/Layout";
 import Navbar from "../containers/Navbar";
 import CreateAdministrador from "../pages/CreateAdministrador";
+import CreateBitacora from "../pages/CreateBitacora";
 import CreateCliente from "../pages/CreateCliente";
 import CreateDispositivo from "../pages/CreateDispositivo";
 import CreateReparacion from "../pages/CreateReparacion";
@@ -65,6 +66,10 @@ function App() {
           <Route
             path="/clientes/:id/dispositivos/:id2/bitacoras"
             element={<VistaBitacoras />}
+          />
+          <Route
+            path="/clientes/:id/dispositivos/:id2/bitacoras/new"
+            element={<CreateBitacora />}
           />
           <Route
             path="/clientes/:id/dispositivos/:id2/bitacoras/:id3"

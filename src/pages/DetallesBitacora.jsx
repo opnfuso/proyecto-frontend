@@ -6,9 +6,14 @@ import { getClienteRequest } from "../api/cliente.api";
 import { useParams } from "react-router-dom";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
+import Select from "react-select";
+import { getManualesReparacionesRequest } from "../api/manual.api";
+import { getTecnicosRequest } from "../api/tecnico.api";
+import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
+import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
 
 function DetallesBitacora() {
-  const [bitacora, setBitacora] = useState({});
+  const [bitacora, setBitacora] = useState({ fecha_salida: "" });
   const [dispositivo, setDispositivo] = useState({
     marca: "",
     modelo: "",
@@ -17,10 +22,31 @@ function DetallesBitacora() {
   });
   const [cliente, setCliente] = useState({});
   const [reparado, setReparado] = useState(false);
+  // const [tecnicos, setTecnicos] = useState([]);
+  // const [reparaciones, setReparaciones] = useState([]);
+  const [options1, setOptions1] = useState([]);
+  const [options2, setOptions2] = useState([]);
+  const [inputList1, setInputList1] = useState([]);
+  const [inputValuesList1, setInputValuesList1] = useState([]);
+  const [inputList2, setInputList2] = useState([]);
+  const [defaultinputList1, setDefaultInputList1] = useState([]);
+  const [defaultinputList2, setDefaultInputList2] = useState([]);
+  const [inputValuesList2, setInputValuesList2] = useState([]);
   const params = useParams();
 
   const getBitacora = async (id) => {
     const res = await getBitacoraRequest(id);
+
+    if (
+      res.data.ReparacionesBitacoras &&
+      res.data.ReparacionesBitacoras.length > 0
+    ) {
+      addSelectReparaciones(res.data.ReparacionesBitacoras);
+    }
+
+    if (res.data.TecnicosBitacoras && res.data.TecnicosBitacoras.length > 0) {
+      addSelectTecnicos(res.data.TecnicosBitacoras);
+    }
 
     setBitacora(res.data);
     setDispositivo(res.data.dispositivo);
@@ -32,10 +58,140 @@ function DetallesBitacora() {
     setCliente(res.data);
   };
 
+  const getReparaciones = async () => {
+    const res = await getManualesReparacionesRequest();
+
+    let options = [];
+
+    res.data.forEach((tecnico) => {
+      options.push({
+        value: tecnico.id,
+        label: tecnico.titulo,
+      });
+    });
+
+    setOptions1(options);
+
+    // setReparaciones(res.data);
+  };
+
+  const getTecnicos = async () => {
+    const res = await getTecnicosRequest();
+
+    let options = [];
+
+    res.data.forEach((tecnico) => {
+      options.push({
+        value: tecnico.id,
+        label: tecnico.nombres + " " + tecnico.apellidos,
+      });
+    });
+
+    setOptions2(options);
+
+    // setTecnicos(res.data);
+  };
+
+  const addSelectReparaciones = (reparaciones) => {
+    reparaciones.forEach((reparacion) => {
+      const op = {
+        value: reparacion.manualReparacionesId,
+        label: reparacion.reparacion.titulo,
+      };
+      setDefaultInputList1(
+        defaultinputList1.concat(
+          <Select value={op} className="mt-2" isDisabled={true} />
+        )
+      );
+    });
+  };
+
+  const addSelectTecnicos = (reparaciones) => {
+    reparaciones.forEach((reparacion) => {
+      const op = {
+        value: reparacion.tecnicoId,
+        label: reparacion.tecnico.nombres + " " + reparacion.tecnico.apellidos,
+      };
+      setDefaultInputList2(
+        defaultinputList2.concat(
+          <Select value={op} className="mt-2" isDisabled={true} />
+        )
+      );
+    });
+  };
+
+  const handleClick1 = () => {
+    setInputList1(
+      inputList1.concat(
+        <Select
+          className="mt-2"
+          options={options1}
+          onChange={(val) => {
+            setInputValuesList1(inputValuesList1.concat(val));
+          }}
+        />
+      )
+    );
+  };
+
+  const handleClick2 = () => {
+    setInputList2(
+      inputList2.concat(
+        <Select
+          className="mt-2"
+          options={options2}
+          onChange={(val) => {
+            setInputValuesList2(inputValuesList2.concat(val));
+          }}
+        />
+      )
+    );
+  };
+
+  const createReparacionesBitacoras = async () => {
+    try {
+      inputValuesList1.forEach(async (value) => {
+        const create = {
+          manualReparacionesId: +value.value,
+          bitacoraId: +params.id3,
+        };
+
+        await createReparacionBitacoraRequest(create);
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: "Hubo un error",
+        icon: "error",
+      });
+    }
+  };
+
+  const createTecnicosBitacoras = async () => {
+    try {
+      inputValuesList2.forEach(async (value) => {
+        const create = {
+          tecnicoId: +value.value,
+          bitacoraId: +params.id3,
+        };
+
+        await createTecnicoBitacoraRequest(create);
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: "Hubo un error",
+        icon: "error",
+      });
+    }
+  };
+
   useEffect(() => {
     getCliente(params.id);
     getBitacora(params.id3);
-  });
+    getTecnicos();
+    getReparaciones();
+  }, []);
 
   return (
     <div id="wapper">
@@ -59,7 +215,7 @@ function DetallesBitacora() {
                   initialValues={{
                     terminado: bitacora.terminado,
                     reparado: bitacora.reparado,
-                    fecha_salida: bitacora.fecha_salida,
+                    fecha_salida: bitacora.fecha_salida.split("T")[0],
                     notas: bitacora.notas,
                     costo: bitacora.costo,
                   }}
@@ -74,6 +230,8 @@ function DetallesBitacora() {
                       }).then(async (result) => {
                         try {
                           if (result.isConfirmed) {
+                            await createReparacionesBitacoras();
+                            await createTecnicosBitacoras();
                             const response = await updateBitacoraRequest(
                               params.id3,
                               values
@@ -216,18 +374,12 @@ function DetallesBitacora() {
                             </label>
                             <label className="form-label w-100">
                               Reparación utilizada
-                              <select className="form-select my-2" required>
-                                <optgroup label="This is a group">
-                                  <option value={12} selected>
-                                    This is item 1
-                                  </option>
-                                  <option value={13}>This is item 2</option>
-                                  <option value={14}>This is item 3</option>
-                                </optgroup>
-                              </select>
+                              {defaultinputList1}
+                              {inputList1}
                               <div></div>
                             </label>
                             <button
+                              onClick={handleClick1}
                               className="btn btn-primary d-block"
                               type="button"
                               style={{
@@ -261,16 +413,10 @@ function DetallesBitacora() {
                               style={{ marginTop: 30 }}
                             >
                               Selecciona tecnico/s involucrado
-                              <select className="form-select my-2" required>
-                                <optgroup label="This is a group">
-                                  <option value={12} selected>
-                                    This is item 1
-                                  </option>
-                                  <option value={13}>This is item 2</option>
-                                  <option value={14}>This is item 3</option>
-                                </optgroup>
-                              </select>
+                              {defaultinputList2}
+                              {inputList2}
                               <button
+                                onClick={handleClick2}
                                 className="btn btn-primary d-block"
                                 type="button"
                                 style={{
@@ -297,6 +443,9 @@ function DetallesBitacora() {
                               Guardar
                             </button>
                             <button
+                              onClick={() => {
+                                window.print();
+                              }}
                               className="btn btn-primary d-block"
                               type="button"
                               style={{

@@ -20,3 +20,10 @@ export const updateBitacoraRequest = async (id, bitacora) => {
     bitacora
   );
 };
+
+export const createBitacoraRequest = async (bitacora) => {
+  return await axios.post(
+    `${process.env.REACT_APP_API_URL}/bitacoras`,
+    bitacora
+  );
+};
