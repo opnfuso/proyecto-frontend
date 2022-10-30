@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactQuill from "react-quill";
 import Navbar from "../containers/Navbar";
 import "react-quill/dist/quill.snow.css";
@@ -7,7 +7,25 @@ import { createManualReparacionRequest } from "../api/manual.api";
 import { Field, Formik } from "formik";
 
 function CreateReparacion() {
-  const refContenido = useRef();
+  const [inputList, setInputList] = useState([]);
+  const [inputValuesList, setInputValuesList] = useState([]);
+
+  const handleClick = () => {
+    setInputList(
+      inputList.concat(
+        <>
+          <h4 className="mt-2">Paso {inputList.length + 1}:</h4>
+          <ReactQuill
+            key={inputList.length}
+            theme="snow"
+            onChange={(val) => {
+              setInputValuesList(inputValuesList.concat(val));
+            }}
+          />
+        </>
+      )
+    );
+  };
 
   return (
     <div id="wapper">
@@ -39,15 +57,20 @@ function CreateReparacion() {
                   }).then(async (result) => {
                     try {
                       if (result.isConfirmed) {
+                        let contenido = "";
+                        inputValuesList.forEach((val, i) => {
+                          contenido += `<p>Paso ${i + 1}:</p>`;
+                          contenido += val;
+                        });
+
                         const reparacion = {
                           titulo: values.titulo,
-                          contenido: refContenido.current.value,
+                          contenido: contenido,
                         };
 
                         const response = await createManualReparacionRequest(
                           reparacion
                         );
-
                         if (response.status === 201) {
                           Swal.fire({
                             title: "Reparación creada con exito",
@@ -86,7 +109,21 @@ function CreateReparacion() {
                       className="d-flex flex-column"
                       style={{ height: "100%", marginTop: 20 }}
                     />
-                    <ReactQuill theme="snow" ref={refContenido} />
+                    {inputList}
+                    <button
+                      onClick={handleClick}
+                      className="btn btn-primary d-block"
+                      type="button"
+                      style={{
+                        margin: "10px auto",
+                        background: "#7e92a2",
+                        borderRadius: 129,
+                        border: "none",
+                      }}
+                    >
+                      <i className="fas fa-plus" />
+                    </button>
+
                     <button
                       disabled={isSubmitting}
                       className="btn btn-primary btn-detalles align-self-center my-4"
