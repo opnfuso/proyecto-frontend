@@ -1,8 +1,58 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../containers/Navbar";
+import { getClientesRequest } from "../api/cliente.api";
+import Select from "react-select";
 
 function Diagnosticador() {
+  const [diagnosticoPasado, setDiagnosticoPasado] = useState("");
+  const [clientes, setClientes] = useState([]);
+  const [options1, setOptions1] = useState([]);
+  const [options2, setOptions2] = useState([]);
+  const [dispositivo, setDispositivo] = useState("");
+  const [searchParams] = useSearchParams();
+  const bitacoraParam = searchParams.get("bitacora");
+
+  const getClientes = async () => {
+    const res = await getClientesRequest();
+
+    let opt = [];
+
+    res.data.forEach((c) => {
+      const option = {
+        value: c.id,
+        label: c.nombres + " " + c.apellidos,
+      };
+
+      opt.push(option);
+    });
+
+    setOptions1(opt);
+    setClientes(res.data);
+  };
+
+  const getOptions2 = (op) => {
+    const cliente = clientes.find((e) => e.id === op.value);
+
+    let opt = [];
+    cliente.Dispositivo.forEach((dis) => {
+      const option = {
+        value: dis.imei,
+        label: `${dis.marca} - ${dis.modelo}`,
+      };
+
+      opt.push(option);
+    });
+
+    setOptions2(opt);
+  };
+
+  useEffect(() => {
+    setDiagnosticoPasado(localStorage.getItem("arbol"));
+    getClientes();
+  }, []);
   return (
     <div id="wapper">
       <Navbar />
@@ -18,49 +68,31 @@ function Diagnosticador() {
             </div>
           </nav>
         </div>
-        <div className="table-responsive">
+        <div>
           <table className="table">
             <thead>
               <tr>
                 <th>Cliente</th>
                 <th>Modelo</th>
-                <th>Marca</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <select>
-                    <optgroup label="This is a group">
-                      <option value={12} selected>
-                        This is item 1
-                      </option>
-                      <option value={13}>This is item 2</option>
-                      <option value={14}>This is item 3</option>
-                    </optgroup>
-                  </select>
+                  <Select
+                    options={options1}
+                    onChange={(val) => {
+                      getOptions2(val);
+                    }}
+                  />
                 </td>
                 <td>
-                  <select>
-                    <optgroup label="This is a group">
-                      <option value={12} selected>
-                        This is item 1
-                      </option>
-                      <option value={13}>This is item 2</option>
-                      <option value={14}>This is item 3</option>
-                    </optgroup>
-                  </select>
-                </td>
-                <td>
-                  <select>
-                    <optgroup label="This is a group">
-                      <option value={12} selected>
-                        This is item 1
-                      </option>
-                      <option value={13}>This is item 2</option>
-                      <option value={14}>This is item 3</option>
-                    </optgroup>
-                  </select>
+                  <Select
+                    options={options2}
+                    onChange={(val) => {
+                      setDispositivo(val.value);
+                    }}
+                  />
                 </td>
               </tr>
               <tr />
@@ -70,23 +102,61 @@ function Diagnosticador() {
         <div
           className="container d-flex flex-column align-items-center justify-content-center"
           id="container-buttons"
-          style={{ width: 369, margin: "auto auto" }}
+          style={{ width: 369, margin: "auto" }}
         >
           <div className="row">
             <div className="col-md-12">
-              <Link
-                to="633b146d4db46330d41ad1c0"
-                className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                style={{ marginBottom: 30 }}
-              >
-                Iniciar diagnostico
-              </Link>
+              {diagnosticoPasado.length > 0 &&
+              diagnosticoPasado !== "633b146d4db46330d41ad1c0" ? (
+                <Link
+                  to={
+                    dispositivo.length > 0
+                      ? `${diagnosticoPasado}?dispositivo=${dispositivo}`
+                      : diagnosticoPasado
+                  }
+                  className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
+                  style={{ marginBottom: 30 }}
+                >
+                  Continuar diagnostico
+                </Link>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12">
+              {bitacoraParam ? (
+                <Link
+                  to={`633b146d4db46330d41ad1c0?bitacora=${bitacoraParam}`}
+                  className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
+                  style={{ marginBottom: 30 }}
+                >
+                  Iniciar diagnostico
+                </Link>
+              ) : (
+                <Link
+                  to={
+                    dispositivo.length > 0
+                      ? `633b146d4db46330d41ad1c0?dispositivo=${dispositivo}`
+                      : "633b146d4db46330d41ad1c0"
+                  }
+                  className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
+                  style={{ marginBottom: 30 }}
+                >
+                  Iniciar diagnostico
+                </Link>
+              )}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
               <Link
-                to="/diagnosticador-rapido"
+                to={
+                  dispositivo.length > 0
+                    ? `/diagnosticador-rapido?dispositivo=${dispositivo}`
+                    : "/diagnosticador-rapido"
+                }
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
               >
                 Llenado rapido

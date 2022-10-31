@@ -3,11 +3,14 @@ import { useState } from "react";
 import Navbar from "../containers/Navbar.jsx";
 import { getBitacoraRequest, updateBitacoraRequest } from "../api/bitacora.api";
 import { getClienteRequest } from "../api/cliente.api";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import Select from "react-select";
-import { getManualesReparacionesRequest } from "../api/manual.api";
+import {
+  getManualesReparacionesRequest,
+  getManualReparacionRequest,
+} from "../api/manual.api";
 import { getTecnicosRequest } from "../api/tecnico.api";
 import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
@@ -22,8 +25,6 @@ function DetallesBitacora() {
   });
   const [cliente, setCliente] = useState({});
   const [reparado, setReparado] = useState(false);
-  // const [tecnicos, setTecnicos] = useState([]);
-  // const [reparaciones, setReparaciones] = useState([]);
   const [options1, setOptions1] = useState([]);
   const [options2, setOptions2] = useState([]);
   const [inputList1, setInputList1] = useState([]);
@@ -33,6 +34,8 @@ function DetallesBitacora() {
   const [defaultinputList2, setDefaultInputList2] = useState([]);
   const [inputValuesList2, setInputValuesList2] = useState([]);
   const params = useParams();
+  const [searchParams] = useSearchParams();
+  const reparacion = searchParams.get("reparacion");
 
   const getBitacora = async (id) => {
     const res = await getBitacoraRequest(id);
@@ -93,16 +96,16 @@ function DetallesBitacora() {
   };
 
   const addSelectReparaciones = (reparaciones) => {
+    let inputList = [];
     reparaciones.forEach((reparacion) => {
       const op = {
         value: reparacion.manualReparacionesId,
         label: reparacion.reparacion.titulo,
       };
-      setDefaultInputList1(
-        defaultinputList1.concat(
-          <Select value={op} className="mt-2" isDisabled={true} />
-        )
-      );
+
+      inputList.push(<Select value={op} className="mt-2" isDisabled={true} />);
+
+      setDefaultInputList1(inputList);
     });
   };
 
@@ -150,6 +153,7 @@ function DetallesBitacora() {
 
   const createReparacionesBitacoras = async () => {
     try {
+      console.log(inputValuesList1);
       inputValuesList1.forEach(async (value) => {
         const create = {
           manualReparacionesId: +value.value,
@@ -186,7 +190,25 @@ function DetallesBitacora() {
     }
   };
 
+  const getReparacion = async (id) => {
+    const res = await getManualReparacionRequest(id);
+
+    const opt = {
+      value: res.data.id,
+      label: res.data.titulo,
+    };
+
+    setInputList1(
+      inputList1.concat(<Select className="mt-2" defaultValue={opt} />)
+    );
+
+    setInputValuesList1(inputValuesList1.concat(opt));
+  };
+
   useEffect(() => {
+    if (reparacion) {
+      getReparacion(reparacion);
+    }
     getCliente(params.id);
     getBitacora(params.id3);
     getTecnicos();
@@ -458,9 +480,9 @@ function DetallesBitacora() {
                               Imprimir
                             </button>
                           </div>
-                          <a
+                          <Link
+                            to={`/diagnosticador?bitacora=${params.id3}`}
                             className="btn btn-primary btn-detalles"
-                            href="diagnosticador.html"
                             style={{
                               background: "#514ef3",
                               color: "rgb(255, 255, 255)",
@@ -469,7 +491,7 @@ function DetallesBitacora() {
                             }}
                           >
                             Ir a diagnosticador
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </form>

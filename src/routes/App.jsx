@@ -19,6 +19,7 @@ import DetallesTecnico from "../pages/DetallesTecnico";
 import Diagnosticador from "../pages/Diagnosticador";
 import DiagnosticadorGeneral from "../pages/DiagnosticadorGeneral";
 import DiagnosticoRapido from "../pages/DiagnosticoRapido";
+import IrABitacora from "../pages/IrABitacora";
 import Manual from "../pages/Manual";
 import Perfil from "../pages/Perfil";
 import Refacciones from "../pages/Refacciones";
@@ -96,6 +97,7 @@ function App() {
           <Route path="/manual" element={<Manual />} />
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
+          <Route path="/ir-a-bitacora" element={<IrABitacora />} />
         </Routes>
       </Layout>
     </BrowserRouter>

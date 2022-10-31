@@ -18,6 +18,7 @@ function Manual() {
 
       setManuales(res.data);
     } else if (titulo) {
+      console.log(titulo);
       const res = await getManualReparacionesReparacionesByTitleRequest(
         titulo.trim()
       );
@@ -28,7 +29,7 @@ function Manual() {
 
   useEffect(() => {
     getManuales();
-  });
+  }, []);
 
   return (
     <div id="wapper">

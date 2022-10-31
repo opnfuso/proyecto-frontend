@@ -3,16 +3,18 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import { checkRole } from "../api/auth.api";
 import Pregunta from "../containers/Pregunta";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getRespuestasByPreguntaIdRequest } from "../api/respuestas.api";
 import { getPreguntaByIdRequest } from "../api/pregunta.api";
+import DiagnosticoSelector from "../containers/DiagnosticoSelector";
 
 function DiagnosticadorGeneral() {
   const [pregunta, setPregunta] = useState({});
   const [respuestas, setRespuestas] = useState([]);
   const [isSoporte, setIsSoporte] = useState(false);
-  // const [containsQueryParams, setContainsQueryParams] = useState(false);
   const { user, isAuthenticated } = useAuth0();
+  const [searchParams] = useSearchParams();
+  const dispositivo = searchParams.get("dispositivo");
 
   const params = useParams();
 
@@ -40,6 +42,8 @@ function DiagnosticadorGeneral() {
     if (isAuthenticated) {
       check(user);
     }
+
+    localStorage.setItem("arbol", params.id);
 
     // if (params && params.id) {
     //   setContainsQueryParams(true);
@@ -77,7 +81,11 @@ function DiagnosticadorGeneral() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {/* {containsQueryParams ? <DiagnosticoSelector /> : <></>} */}
+          {dispositivo ? (
+            <DiagnosticoSelector dispositivo={dispositivo} />
+          ) : (
+            <></>
+          )}
         </div>
         <Pregunta
           pregunta={pregunta}

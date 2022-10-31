@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import Navbar from "../containers/Navbar.jsx";
 import { getSolucionRequest } from "../api/solucion.api";
 import { useEffect } from "react";
@@ -7,6 +7,9 @@ import { useEffect } from "react";
 function VistaSolucion() {
   const [solucion, setSolucion] = useState({ text: "" });
   const params = useParams();
+  const [searchParams] = useSearchParams();
+  const dispositivo = searchParams.get("dispositivo");
+  const bitacoraParam = searchParams.get("bitacora");
 
   const getSolucion = async (id) => {
     const res = await getSolucionRequest(id);
@@ -74,13 +77,35 @@ function VistaSolucion() {
               No funcionó
             </button>
           </div>
-          <Link
-            to={`/manual?titulo=${solucion.text.split("recomienda")[1]}`}
-            className="btn btn-primary btn-diag"
-            type="button"
-          >
-            Ir al manual
-          </Link>
+          {dispositivo ? (
+            <Link
+              to={`/manual?titulo=${
+                solucion.text.split("recomienda")[1]
+              }&dispositivo=${dispositivo}`}
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
+              Ir al manual
+            </Link>
+          ) : bitacoraParam ? (
+            <Link
+              to={`/manual?titulo=${
+                solucion.text.split("recomienda")[1]
+              }&bitacora=${bitacoraParam}`}
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
+              Ir al manual
+            </Link>
+          ) : (
+            <Link
+              to={`/manual?titulo=${solucion.text.split("recomienda")[1]}`}
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
+              Ir al manual
+            </Link>
+          )}
         </div>
       </div>
     </div>
