@@ -3,8 +3,9 @@ import img from "../assets/img/business-3d-rear-view-of-grey-phone.png";
 import { ErrorMessage, Field, Formik } from "formik";
 import { createDispositivoSchema } from "../schemas/dispositivos/create.schema";
 import { createDispositivoRequest } from "../api/dispositivo.api";
+import logo from "../assets/img/Logo.png";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const CreateDispositivo = () => {
   const params = useParams();
@@ -231,6 +232,13 @@ const CreateDispositivo = () => {
           <img src={img} style={{ width: 350 }} alt="Phone" />
         </div>
       </div>
+      <Link
+        to={`/clientes/${params.id}/dispositivos`}
+        className="position-absolute top-0 m-2"
+        href="seleccion-usuarios.html"
+      >
+        <img src={logo} alt="Logo" />
+      </Link>
     </div>
   );
 };
