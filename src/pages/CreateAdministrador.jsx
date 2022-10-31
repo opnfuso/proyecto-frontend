@@ -2,7 +2,7 @@ import React from "react";
 import sideImage from "../assets/img/seated businessman in dark blue suit with laptop.png";
 import logo from "../assets/img/Logo.png";
 import { Link } from "react-router-dom";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { createAdministradorRequest } from "../api/administrador.api";
 import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
@@ -99,6 +99,9 @@ function CreateAdministrador() {
                               placeholder="Saul Alexis"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="nombres" />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -115,6 +118,9 @@ function CreateAdministrador() {
                               placeholder="Perez Rincon"
                               required
                             />
+                          </div>
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="apellidos" />
                           </div>
                         </div>
                       </div>
@@ -142,6 +148,9 @@ function CreateAdministrador() {
                               required
                             />
                           </div>
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="date" name="fecha_nacimiento" />
+                          </div>
                         </div>
                       </div>
                       <div className="col">
@@ -157,6 +166,9 @@ function CreateAdministrador() {
                               placeholder="+523314678934"
                               required
                             />
+                          </div>
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="telefono" />
                           </div>
                         </div>
                       </div>

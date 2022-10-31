@@ -2,11 +2,18 @@ import { object, string, date } from "yup";
 import "yup-phone";
 
 export const editAdministradorSchema = object({
-  nombres: string().matches("^[a-zA-Z]+$").required("el nombre es requerido"),
+  nombres: string()
+    .matches(/^[A-Za-z\s]*$/)
+    .required("el nombre es requerido"),
   apellidos: string()
-    .matches("^[a-zA-Z]+$")
+    .matches(/^[A-Za-z\s]*$/)
     .required("los apellidos son requeridos"),
-  fecha_nacimiento: date().required("la fecha de nacimiento es requerida"),
+  fecha_nacimiento: date()
+    .max(
+      new Date(new Date().setFullYear(new Date().getFullYear() - 18)),
+      "Debe ser mayor de edad"
+    )
+    .required("la fecha de nacimiento es requerida"),
   telefono: string()
     .phone("+52", true, "el numero de telefono debe de ser correcto")
     .required("el telefono es requerido"),
