@@ -95,6 +95,14 @@ function ViewRespuesta() {
             {respuesta.text}
           </label>
           <ListSoluciones key={respuesta._id} soluciones={soluciones} />
+          <button
+            onClick={() => {
+              window.history.go(-1);
+            }}
+            className="btn btn-primary btn-vistas"
+          >
+            Regresar
+          </button>
         </div>
       </div>
     </div>

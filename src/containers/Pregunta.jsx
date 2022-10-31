@@ -16,6 +16,14 @@ function Pregunta({ pregunta, respuestas }) {
         {pregunta.text}
       </label>
       <Respuestas respuestas={respuestas} key={pregunta._id} />
+      <button
+        onClick={() => {
+          window.history.go(-1);
+        }}
+        className="btn btn-primary btn-vistas"
+      >
+        Regresar
+      </button>
     </div>
   );
 }

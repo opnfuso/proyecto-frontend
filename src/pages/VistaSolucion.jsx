@@ -171,6 +171,14 @@ function VistaSolucion() {
               Ir al manual
             </Link>
           )}
+          <button
+            onClick={() => {
+              window.history.go(-1);
+            }}
+            className="btn btn-primary btn-vistas"
+          >
+            Regresar
+          </button>
         </div>
       </div>
     </div>
