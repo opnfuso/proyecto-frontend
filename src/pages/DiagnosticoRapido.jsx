@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import ListPreguntas from "../containers/ListPreguntas.jsx";
 import Navbar from "../containers/Navbar.jsx";
 import { getRespuestasRequest } from "../api/respuestas.api";
+import { useSearchParams } from "react-router-dom";
+import DiagnosticoSelector from "../containers/DiagnosticoSelector.jsx";
 
 function DiagnosticoRapido() {
   const [preguntas, setPreguntas] = useState([]);
+  const [searchParams] = useSearchParams();
+  const dispositivo = searchParams.get("dispositivo");
 
   const getPreguntas = async () => {
     const res = await getRespuestasRequest();
@@ -58,23 +62,11 @@ function DiagnosticoRapido() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Cliente</th>
-                <th>Modelo</th>
-                <th>Marca</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Saul Alexis</td>
-                <td>Iphone 12</td>
-                <td>Apple</td>
-              </tr>
-              <tr />
-            </tbody>
-          </table>
+          {dispositivo ? (
+            <DiagnosticoSelector dispositivo={dispositivo} />
+          ) : (
+            <></>
+          )}
         </div>
         <ListPreguntas preguntas={preguntas} />
       </div>

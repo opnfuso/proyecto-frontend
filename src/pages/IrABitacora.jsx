@@ -13,7 +13,7 @@ function IrABitacora() {
   const [options, setOptions] = useState([]);
   const [bitacora, setBitacora] = useState({
     id: "",
-    dispositivo: { id: "", cliente: { id: "" } },
+    dispositivo: { id: "", id_cliente: "" },
   });
 
   const getOptions = async (id) => {
@@ -68,7 +68,7 @@ function IrABitacora() {
           </label>
         </form>
         <Link
-          to={`/clientes/${bitacora.dispositivo.cliente.id}/dispositivos/${bitacora.dispositivo.imei}/bitacoras/${bitacora.id}?reparacion=${reparacion}`}
+          to={`/clientes/${bitacora.dispositivo.id_cliente}/dispositivos/${bitacora.dispositivo.imei}/bitacoras/${bitacora.id}?reparacion=${reparacion}`}
           className="btn btn-primary align-self-center btn-detalles"
           type="button"
         >

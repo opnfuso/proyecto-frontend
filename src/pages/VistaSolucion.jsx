@@ -1,15 +1,29 @@
 import React, { useState } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import Navbar from "../containers/Navbar.jsx";
 import { getSolucionRequest } from "../api/solucion.api";
+import { getManualReparacionesReparacionesByTitleRequest } from "../api/manual.api";
 import { useEffect } from "react";
+import { getBitacoraRequest } from "../api/bitacora.api";
+import { getDispositivoRequest } from "../api/dispositivo.api.js";
 
 function VistaSolucion() {
   const [solucion, setSolucion] = useState({ text: "" });
   const params = useParams();
   const [searchParams] = useSearchParams();
-  const dispositivo = searchParams.get("dispositivo");
+  const [bitacora, setBitacora] = useState({
+    id: "",
+    dispositivo: { id: "", id_cliente: "" },
+  });
+  const [dispositivo, setDispositivo] = useState({});
+  const dispositivoParam = searchParams.get("dispositivo");
   const bitacoraParam = searchParams.get("bitacora");
+  const navigate = useNavigate();
 
   const getSolucion = async (id) => {
     const res = await getSolucionRequest(id);
@@ -17,9 +31,54 @@ function VistaSolucion() {
     setSolucion(res.data);
   };
 
+  const getReparacion = async () => {
+    if (bitacoraParam) {
+      const title = `${solucion.text.split("recomienda")[1].trim()} ${
+        bitacora.dispositivo.modelo
+      }`;
+
+      const res = await getManualReparacionesReparacionesByTitleRequest(title);
+
+      console.log(title);
+
+      navigate(
+        `/clientes/${bitacora.dispositivo.id_cliente}/dispositivos/${bitacora.dispositivo.imei}/bitacoras/${bitacora.id}?reparacion=${res.data[0].id}`
+      );
+    } else if (dispositivoParam) {
+      const title = `${solucion.text.split("recomienda")[1].trim()} ${
+        dispositivo.modelo
+      }`;
+
+      const res = await getManualReparacionesReparacionesByTitleRequest(title);
+
+      console.log(title);
+
+      navigate(
+        `/ir-a-bitacora?dispositivo=${dispositivoParam}&reparacion=${res.data[0].id}`
+      );
+    }
+  };
+
+  const getBitacora = async (id) => {
+    const res = await getBitacoraRequest(id);
+
+    setBitacora(res.data);
+  };
+
+  const getDispositivo = async (id) => {
+    const res = await getDispositivoRequest(id);
+
+    setDispositivo(res.data);
+  };
+
   useEffect(() => {
+    if (bitacoraParam) {
+      getBitacora(bitacoraParam);
+    } else if (dispositivoParam) {
+      getDispositivo(dispositivoParam);
+    }
     getSolucion(params.id);
-  });
+  }, []);
 
   return (
     <div id="wapper">
@@ -39,25 +98,7 @@ function VistaSolucion() {
         <div
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
-        >
-          {/* <table className="table">
-            <thead>
-              <tr>
-                <th>Cliente</th>
-                <th>Modelo</th>
-                <th>Marca</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Saul Alexis</td>
-                <td>Iphone 12</td>
-                <td>Apple</td>
-              </tr>
-              <tr />
-            </tbody>
-          </table> */}
-        </div>
+        ></div>
         <div className="w-100 h-100 d-flex align-items-center justify-content-center flex-column">
           <label
             className="form-label"
@@ -70,18 +111,34 @@ function VistaSolucion() {
             {solucion.text}
           </label>
           <div className="d-flex w-100 my-4 justify-content-evenly flex-wrap">
-            <button className="btn btn-primary btn-diag" type="button">
+            <button
+              onClick={() => {
+                getReparacion();
+              }}
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
               Si funcionó
             </button>
-            <button className="btn btn-primary btn-diag" type="button">
+            <Link
+              to={
+                dispositivoParam
+                  ? `/respuesta/${solucion.respuesta}?dispositivo=${dispositivoParam}`
+                  : bitacoraParam
+                  ? `/respuesta/${solucion.respuesta}?bitacora=${bitacoraParam}`
+                  : `/respuesta/${solucion.respuesta}`
+              }
+              className="btn btn-primary btn-diag"
+              type="button"
+            >
               No funcionó
-            </button>
+            </Link>
           </div>
-          {dispositivo ? (
+          {dispositivoParam ? (
             <Link
               to={`/manual?titulo=${
                 solucion.text.split("recomienda")[1]
-              }&dispositivo=${dispositivo}`}
+              }&dispositivo=${dispositivoParam}`}
               className="btn btn-primary btn-diag"
               type="button"
             >

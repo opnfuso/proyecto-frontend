@@ -16,7 +16,9 @@ function ListPreguntas({ preguntas }) {
   const handleChange = (value) => {
     if (!selectedPreguntasId.includes(value.value.sig)) {
       let selec = selectedPreguntasId;
-      selec.push(value.value.sig);
+      if (value.value.sig !== undefined) {
+        selec.push(value.value.sig);
+      }
       setSelectedPreguntasId(selec);
     }
   };
