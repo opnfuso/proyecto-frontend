@@ -26,7 +26,7 @@ function ItemPregunta({ pregunta, handleChange }) {
 
   return (
     <label className="form-label">
-      {pregunta.text + " - " + pregunta.type}
+      {pregunta.text + " - " + (pregunta.type ? pregunta.type : "")}
       <Select
         onChange={(value) => {
           handleChange(value);
