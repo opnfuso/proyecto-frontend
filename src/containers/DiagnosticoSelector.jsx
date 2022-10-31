@@ -11,6 +11,7 @@ function DiagnosticoSelector(props) {
     marca: "",
   });
 
+  // Cambio
   const getDispositivo = async (id) => {
     const res = await getDispositivoRequest(id);
 
