@@ -10,6 +10,7 @@ function ItemCliente(props) {
       <td>{props.fechaNacimiento}</td>
       <td>{props.telefono}</td>
       <td>{props.domicilio}</td>
+      <td>{props.activo ? "Activo" : "Inactivo"}</td>
       <td>
         <Link to={`${props.id}`}>
           <i className="fas fa-edit" />
@@ -26,6 +27,7 @@ ItemCliente.propTypes = {
   telefono: PropTypes.string,
   fechaNacimiento: PropTypes.string,
   domicilio: PropTypes.string,
+  activo: PropTypes.bool,
 };
 
 export default ItemCliente;

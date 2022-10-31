@@ -22,6 +22,7 @@ function DetallesCliente() {
         telefono: res.data.telefono,
         domicilio: res.data.domicilio,
         fecha_nacimiento: res.data.fecha_nacimiento.split("T")[0],
+        activo: res.data.activo,
       };
 
       setCliente(cliente);
