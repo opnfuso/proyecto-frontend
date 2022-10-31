@@ -25,6 +25,7 @@ function DiagnosticoSelector(props) {
   };
 
   useEffect(() => {
+    console.log(props);
     if (props.dispositivo) {
       getDispositivo(props.dispositivo);
     } else if (props.bitacora) {

@@ -75,13 +75,14 @@ function ViewRespuesta() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {dispositivoParam ||
-            (bitacoraParams && (
-              <DiagnosticoSelector
-                dispositivo={dispositivoParam}
-                bitacora={bitacoraParams}
-              />
-            ))}
+          {dispositivoParam || bitacoraParams ? (
+            <DiagnosticoSelector
+              dispositivo={dispositivoParam}
+              bitacora={bitacoraParams}
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <div className="w-100 h-100 d-flex align-items-center justify-content-center flex-column">
           <label

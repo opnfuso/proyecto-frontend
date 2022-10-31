@@ -74,12 +74,14 @@ function IrABitacora() {
     const res = await getBitacorasByDispositivoId(value.imei);
     let opt = [];
 
+    console.log(res);
+
     res.data.forEach((bit) => {
       const option = {
         value: bit,
-        label: `fecha de salida: ${bit.fecha_salida.split("T")[0]} ${
-          bit.terminado ? "Si" : "No"
-        }`,
+        label: `fecha recibido: ${
+          bit.dispositivo.fecha_recibido.split("T")[0]
+        } Terminado: ${bit.terminado ? "Si" : "No"}`,
       };
 
       opt.push(option);
