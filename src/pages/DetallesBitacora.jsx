@@ -14,6 +14,7 @@ import {
 import { getTecnicosRequest } from "../api/tecnico.api";
 import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
+import { usePrompt } from "../components/usePrompt.js";
 
 function DetallesBitacora() {
   const [bitacora, setBitacora] = useState({ fecha_salida: "" });
@@ -36,6 +37,8 @@ function DetallesBitacora() {
   const params = useParams();
   const [searchParams] = useSearchParams();
   const reparacion = searchParams.get("reparacion");
+  const [termino, setTermino] = useState(false);
+  usePrompt("Seguro que quieres salir?", true);
 
   const getBitacora = async (id) => {
     const res = await getBitacoraRequest(id);
@@ -314,7 +317,7 @@ function DetallesBitacora() {
                                 <tr>
                                   <th>Progreso</th>
                                   <th>Fecha de Entrada</th>
-                                  <th>Fecha de entregado</th>
+                                  {termino && <th>Fecha de entregado</th>}
                                 </tr>
                               </thead>
                               <tbody>
@@ -322,6 +325,11 @@ function DetallesBitacora() {
                                   <td>
                                     <div>
                                       <Field
+                                        onClick={(val) => {
+                                          setTermino(
+                                            val.target.value === "false"
+                                          );
+                                        }}
                                         className="form-check-input"
                                         type="checkbox"
                                         defaultValue
@@ -332,21 +340,41 @@ function DetallesBitacora() {
                                         className="form-check-label ms-2"
                                         htmlFor="flexCheckDefault"
                                       >
-                                        Terminado
+                                        Termino de bitacora
+                                      </label>
+                                      <label
+                                        className="form-check-label"
+                                        htmlFor="flexCheckDefault"
+                                      >
+                                        <Field
+                                          onClick={(val) => {
+                                            setReparado(
+                                              val.target.value === "false"
+                                            );
+                                          }}
+                                          className="form-check-input ms-2 me-2"
+                                          type="checkbox"
+                                          defaultValue
+                                          id="flexCheckDefault"
+                                          name="reparado"
+                                        />
+                                        Reparado
                                       </label>
                                     </div>
                                   </td>
                                   <td>
                                     {dispositivo.fecha_recibido.split("T")[0]}
                                   </td>
-                                  <td>
-                                    <Field
-                                      className="form-control"
-                                      type="date"
-                                      name="fecha_salida"
-                                      required
-                                    />
-                                  </td>
+                                  {termino && (
+                                    <td>
+                                      <Field
+                                        className="form-control"
+                                        type="date"
+                                        name="fecha_salida"
+                                        required
+                                      />
+                                    </td>
+                                  )}
                                 </tr>
                               </tbody>
                             </table>
@@ -416,22 +444,6 @@ function DetallesBitacora() {
                             >
                               <i className="fas fa-plus" />
                             </button>
-                            <label
-                              className="form-check-label"
-                              htmlFor="flexCheckDefault"
-                            >
-                              <Field
-                                onClick={(val) => {
-                                  setReparado(val.target.value === "false");
-                                }}
-                                className="form-check-input me-2"
-                                type="checkbox"
-                                defaultValue
-                                id="flexCheckDefault"
-                                name="reparado"
-                              />
-                              Reparado
-                            </label>
 
                             <label
                               className="form-label w-100"
