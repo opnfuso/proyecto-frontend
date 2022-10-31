@@ -110,7 +110,7 @@ function Diagnosticador() {
         >
           <div className="row">
             <div className="col-md-12">
-              {diagnosticoPasado.length > 0 &&
+              {diagnosticoPasado &&
               diagnosticoPasado !== "633b146d4db46330d41ad1c0" ? (
                 <Link
                   to={
