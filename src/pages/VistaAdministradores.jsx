@@ -32,7 +32,7 @@ const VistaAdministradores = () => {
             <div className="container d-flex justify-content-between">
               <div className="navbar-brand d-flex align-items-center">
                 <span style={{ color: "rgb(9,44,77)", fontWeight: "bold" }}>
-                  Admins
+                  Administradores
                 </span>
               </div>
               <Link

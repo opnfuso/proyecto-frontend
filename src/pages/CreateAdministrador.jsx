@@ -73,7 +73,7 @@ function CreateAdministrador() {
                   <div>
                     <div className="row">
                       <div className="col">
-                        <h1>Registro de admin</h1>
+                        <h1>Registro de administrador</h1>
                       </div>
                     </div>
                     <div

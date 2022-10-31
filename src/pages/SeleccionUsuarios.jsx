@@ -57,7 +57,7 @@ const SeleccionUsuarios = () => {
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
                   to="/administradores"
                 >
-                  Admins
+                  Administradores
                 </Link>
               )}
             </div>
