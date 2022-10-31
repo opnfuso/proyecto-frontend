@@ -118,6 +118,7 @@ function CreateRespuesta() {
                 className="form-control"
                 type="text"
                 name="text"
+                maxlength={25}
                 placeholder="Titulo"
                 required
               />
