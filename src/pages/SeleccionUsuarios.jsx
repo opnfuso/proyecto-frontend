@@ -1,8 +1,25 @@
-import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../containers/Navbar";
+import { checkRole } from "../api/auth.api";
+import { useEffect } from "react";
 
 const SeleccionUsuarios = () => {
+  const [isAdministrador, setIsAdministrador] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
+
+  const check = async (claim) => {
+    const res = await checkRole(claim.sub, "Administrador");
+    setIsAdministrador(res.data.containsRole);
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      check(user);
+    }
+  }, []);
+
   return (
     <div id="wapper">
       <Navbar />
@@ -35,22 +52,26 @@ const SeleccionUsuarios = () => {
           </div>
           <div className="row" style={{ marginBottom: 30 }}>
             <div className="col-md-12">
-              <Link
-                className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                to="/administradores"
-              >
-                Admins
-              </Link>
+              {isAdministrador && (
+                <Link
+                  className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
+                  to="/administradores"
+                >
+                  Admins
+                </Link>
+              )}
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-              <Link
-                className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
-                to="/tecnicos"
-              >
-                Tecnicos
-              </Link>
+              {isAdministrador && (
+                <Link
+                  className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
+                  to="/tecnicos"
+                >
+                  Tecnicos
+                </Link>
+              )}
             </div>
           </div>
         </div>
