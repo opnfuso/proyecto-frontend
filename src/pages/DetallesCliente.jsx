@@ -5,7 +5,12 @@ import Avatar from "../assets/img/Avatar Wrapper.png";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
-import { getClienteRequest, updateClienteRequest } from "../api/cliente.api";
+import {
+  activateClienteRequest,
+  deleteClienteRequest,
+  getClienteRequest,
+  updateClienteRequest,
+} from "../api/cliente.api";
 
 function DetallesCliente() {
   const [cliente, setCliente] = useState({});
@@ -31,9 +36,67 @@ function DetallesCliente() {
     }
   };
 
+  const handleActivate = async () => {
+    Swal.fire({
+      title: "Activar el cliente",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Activar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      try {
+        if (result.isConfirmed) {
+          const response = await activateClienteRequest(cliente.id);
+
+          if (response.status === 200) {
+            Swal.fire({
+              title: "Cliente activado con exito",
+              icon: "success",
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          title: "Hubo un error",
+          icon: "error",
+        });
+      }
+    });
+  };
+
+  const handleDeactivate = async () => {
+    Swal.fire({
+      title: "Desactivar el cliente",
+      icon: "question",
+      showDenyButton: true,
+      confirmButtonText: "Desactivar",
+      denyButtonText: "Cancelar",
+    }).then(async (result) => {
+      try {
+        if (result.isConfirmed) {
+          const response = await deleteClienteRequest(cliente.id);
+
+          if (response.status === 200) {
+            Swal.fire({
+              title: "Cliente desactivado con exito",
+              icon: "success",
+            });
+          }
+        }
+      } catch (error) {
+        console.error(error);
+        Swal.fire({
+          title: "Hubo un error",
+          icon: "error",
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     loadCliente(params.id);
-  });
+  }, []);
 
   return (
     <div id="wapper">
@@ -243,6 +306,21 @@ function DetallesCliente() {
                         >
                           Ir a dispositivos
                         </Link>
+                        {cliente.activo ? (
+                          <div
+                            onClick={handleDeactivate}
+                            className="btn btn-primary btn-detalles ms-5"
+                          >
+                            Desactivar
+                          </div>
+                        ) : (
+                          <div
+                            onClick={handleActivate}
+                            className="btn btn-primary btn-detalles ms-5"
+                          >
+                            Activar
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

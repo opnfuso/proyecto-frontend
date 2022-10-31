@@ -25,6 +25,7 @@ function ListClientes({ clientes }) {
             fechaNacimiento={cliente.fecha_nacimiento_string}
             telefono={cliente.telefono}
             domicilio={cliente.domicilio}
+            activo={cliente.activo}
           />
         ))}
       </tbody>

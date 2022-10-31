@@ -12,5 +12,8 @@ export const createClienteRequest = async (cliente) =>
 export const updateClienteRequest = async (id, cliente) =>
   await axios.patch(`${process.env.REACT_APP_API_URL}/clientes/${id}`, cliente);
 
-export const deleteClienteRequeste = async (id) =>
+export const deleteClienteRequest = async (id) =>
   await axios.delete(`${process.env.REACT_APP_API_URL}/clientes/${id}`);
+
+export const activateClienteRequest = async (id) =>
+  await axios.patch(`${process.env.REACT_APP_API_URL}/clientes/activate/${id}`);
