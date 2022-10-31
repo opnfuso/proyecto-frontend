@@ -44,7 +44,10 @@ function App() {
           <Route
             path="/administradores"
             element={
-              <ProtectedRoute component={VistaAdministradores} rol="Soporte" />
+              <ProtectedRoute
+                component={VistaAdministradores}
+                rol="Administrador"
+              />
             }
           />
           <Route
