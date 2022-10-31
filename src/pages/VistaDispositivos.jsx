@@ -31,7 +31,7 @@ function VistaDispositivos() {
                 </span>
               </div>
               <Link
-                to="/new/dispositivo"
+                to="new"
                 className="btn btn-primary btn-agregar-usuario"
                 href="registro-dispositivo.html"
               >

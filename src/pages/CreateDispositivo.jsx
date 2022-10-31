@@ -4,13 +4,10 @@ import { ErrorMessage, Field, Formik } from "formik";
 import { createDispositivoSchema } from "../schemas/dispositivos/create.schema";
 import { createDispositivoRequest } from "../api/dispositivo.api";
 import Swal from "sweetalert2";
-
-/* 
-  TODO
-  Get client id from props
-*/
+import { useParams } from "react-router-dom";
 
 const CreateDispositivo = () => {
+  const params = useParams();
   return (
     <div
       className="container"
@@ -29,8 +26,8 @@ const CreateDispositivo = () => {
               marca: "",
               modelo: "",
               imei: "",
-              Nserie: "",
-              Frecibido: "",
+              numero_serie: "",
+              fecha_recibido: "",
             }}
             onSubmit={(values, { setSubmitting }) => {
               const handleSubmit = async () => {
@@ -43,7 +40,16 @@ const CreateDispositivo = () => {
                 }).then(async (result) => {
                   try {
                     if (result.isConfirmed) {
-                      const response = await createDispositivoRequest(values);
+                      const create = {
+                        marca: values.marca,
+                        modelo: values.modelo,
+                        imei: values.imei,
+                        numero_serie: values.numero_serie,
+                        fecha_recibido: values.fecha_recibido,
+                        id_cliente: +params.id,
+                      };
+
+                      const response = await createDispositivoRequest(create);
 
                       if (response.status === 201) {
                         Swal.fire({
@@ -65,7 +71,7 @@ const CreateDispositivo = () => {
               handleSubmit();
               setSubmitting(false);
             }}
-            validationSchema={createDispositivoSchema}
+            // validationSchema={createDispositivoSchema}
           >
             {({ handleSubmit, isSubmitting }) => (
               <form onSubmit={handleSubmit}>
@@ -142,13 +148,13 @@ const CreateDispositivo = () => {
                         >
                           <Field
                             className="form-control"
-                            type="number"
+                            type="text"
                             name="imei"
                             placeholder={6215731286654}
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="number" name="imei" />
+                            <ErrorMessage type="text" name="imei" />
                           </div>
                         </div>
                       </div>
@@ -162,7 +168,7 @@ const CreateDispositivo = () => {
                           <Field
                             className="form-control"
                             type="text"
-                            name="Nserie"
+                            name="numero_serie"
                             placeholder="DNQDQJMH0DXT"
                           />
                           <div style={{ color: "red" }}>
@@ -191,7 +197,7 @@ const CreateDispositivo = () => {
                           <Field
                             className="form-control"
                             type="date"
-                            name="Frecibido"
+                            name="fecha_recibido"
                             required
                           />
                           <div style={{ color: "red" }}>

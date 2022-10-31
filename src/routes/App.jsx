@@ -62,10 +62,13 @@ function App() {
             element={<VistaDispositivos />}
           />
           <Route
+            path="/clientes/:id/dispositivos/new"
+            element={<CreateDispositivo />}
+          />
+          <Route
             path="/clientes/:id/dispositivos/:id2"
             element={<DetallesDispositivo />}
           />
-          <Route path="/new/dispositivo" element={<CreateDispositivo />} />
           <Route path="/new/cliente" element={<CreateCliente />} />
           <Route
             path="/clientes/:id/dispositivos/:id2/bitacoras"

@@ -292,6 +292,7 @@ function DetallesBitacora() {
                                   <th>Modelo</th>
                                   <th>Marca</th>
                                   <th>IMEI</th>
+                                  <th>Bitacora</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -302,6 +303,7 @@ function DetallesBitacora() {
                                   <td>{dispositivo.modelo}</td>
                                   <td>{dispositivo.marca}</td>
                                   <td>{dispositivo.imei}</td>
+                                  <td>{params.id3}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -367,6 +369,7 @@ function DetallesBitacora() {
                               rows={4}
                               defaultValue={""}
                               as="textarea"
+                              required
                             />
                           )}
                           <label className="form-label my-4">
