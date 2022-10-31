@@ -66,24 +66,20 @@ function Reparacion() {
             <div
               dangerouslySetInnerHTML={{ __html: reparacion.contenido }}
             ></div>
-            {dispositivo && (
-              <Link
-                to={`/ir-a-bitacora?dispositivo=${dispositivo}&reparacion=${params.id}`}
-                className="btn btn-primary btn-detalles align-self-center m-4 w-auto"
-                href="#"
-              >
-                Llenar en bitacora
-              </Link>
-            )}
-            {bitacoraParam && (
-              <Link
-                to={`/clientes/${bitacora.dispositivo.id_cliente}/dispositivos/${bitacora.dispositivo.imei}/bitacoras/${bitacora.id}?reparacion=${params.id}`}
-                className="btn btn-primary btn-detalles align-self-center m-4 w-auto"
-                href="#"
-              >
-                Llenar en bitacora
-              </Link>
-            )}
+
+            <Link
+              to={
+                dispositivo
+                  ? `/ir-a-bitacora?dispositivo=${dispositivo}&reparacion=${params.id}`
+                  : bitacoraParam
+                  ? `/clientes/${bitacora.dispositivo.id_cliente}/dispositivos/${bitacora.dispositivo.imei}/bitacoras/${bitacora.id}?reparacion=${params.id}`
+                  : `/ir-a-bitacora?reparacion=${params.id}`
+              }
+              className="btn btn-primary btn-detalles align-self-center m-4 w-auto"
+              href="#"
+            >
+              Llenar en bitacora
+            </Link>
           </div>
         </div>
       </div>
