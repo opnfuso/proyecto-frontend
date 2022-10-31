@@ -9,6 +9,7 @@ function DiagnosticoRapido() {
   const [preguntas, setPreguntas] = useState([]);
   const [searchParams] = useSearchParams();
   const dispositivo = searchParams.get("dispositivo");
+  const bitacoraParams = searchParams.get("bitacora");
 
   const getPreguntas = async () => {
     const res = await getRespuestasRequest();
@@ -62,8 +63,11 @@ function DiagnosticoRapido() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {dispositivo ? (
-            <DiagnosticoSelector dispositivo={dispositivo} />
+          {dispositivo || bitacoraParams ? (
+            <DiagnosticoSelector
+              dispositivo={dispositivo}
+              bitacora={bitacoraParams}
+            />
           ) : (
             <></>
           )}

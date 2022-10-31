@@ -5,6 +5,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Navbar from "../containers/Navbar";
 import { getClientesRequest } from "../api/cliente.api";
 import Select from "react-select";
+import DiagnosticoSelector from "../containers/DiagnosticoSelector";
 
 function Diagnosticador() {
   const [diagnosticoPasado, setDiagnosticoPasado] = useState("");
@@ -70,7 +71,7 @@ function Diagnosticador() {
         </div>
         <div>
           {bitacoraParam ? (
-            <></>
+            <DiagnosticoSelector bitacora={bitacoraParam} />
           ) : (
             <table className="table">
               <thead>

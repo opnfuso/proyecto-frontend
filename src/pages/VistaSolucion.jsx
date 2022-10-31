@@ -11,6 +11,7 @@ import { getManualReparacionesReparacionesByTitleRequest } from "../api/manual.a
 import { useEffect } from "react";
 import { getBitacoraRequest } from "../api/bitacora.api";
 import { getDispositivoRequest } from "../api/dispositivo.api.js";
+import DiagnosticoSelector from "../containers/DiagnosticoSelector.jsx";
 
 function VistaSolucion() {
   const [solucion, setSolucion] = useState({ text: "" });
@@ -99,6 +100,13 @@ function VistaSolucion() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         ></div>
+        {dispositivoParam ||
+          (bitacoraParam && (
+            <DiagnosticoSelector
+              dispositivo={dispositivoParam}
+              bitacora={bitacoraParam}
+            />
+          ))}
         <div className="w-100 h-100 d-flex align-items-center justify-content-center flex-column">
           <label
             className="form-label"

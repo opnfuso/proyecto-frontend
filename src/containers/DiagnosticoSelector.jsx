@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getDispositivoRequest } from "../api/dispositivo.api";
+import { getBitacoraRequest } from "../api/bitacora.api";
 
 function DiagnosticoSelector(props) {
   const [dispositivo, setDispositivo] = useState({
@@ -11,7 +12,12 @@ function DiagnosticoSelector(props) {
     marca: "",
   });
 
-  // Cambio
+  const getBitacora = async (id) => {
+    const res = await getBitacoraRequest(id);
+
+    getDispositivo(res.data.imei_dispositivo);
+  };
+
   const getDispositivo = async (id) => {
     const res = await getDispositivoRequest(id);
 
@@ -21,6 +27,8 @@ function DiagnosticoSelector(props) {
   useEffect(() => {
     if (props.dispositivo) {
       getDispositivo(props.dispositivo);
+    } else if (props.bitacora) {
+      getBitacora(props.bitacora);
     }
   }, []);
 
@@ -47,6 +55,7 @@ function DiagnosticoSelector(props) {
 
 DiagnosticoSelector.propTypes = {
   dispositivo: PropTypes.object,
+  bitacora: PropTypes.string,
 };
 
 export default DiagnosticoSelector;

@@ -15,6 +15,7 @@ function DiagnosticadorGeneral() {
   const { user, isAuthenticated } = useAuth0();
   const [searchParams] = useSearchParams();
   const dispositivo = searchParams.get("dispositivo");
+  const bitacoraParams = searchParams.get("bitacora");
 
   const params = useParams();
 
@@ -81,8 +82,11 @@ function DiagnosticadorGeneral() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {dispositivo ? (
-            <DiagnosticoSelector dispositivo={dispositivo} />
+          {dispositivo || bitacoraParams ? (
+            <DiagnosticoSelector
+              dispositivo={dispositivo}
+              bitacora={bitacoraParams}
+            />
           ) : (
             <></>
           )}

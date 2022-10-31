@@ -16,6 +16,7 @@ function ViewRespuesta() {
   const { user, isAuthenticated } = useAuth0();
   const [searchParams] = useSearchParams();
   const dispositivoParam = searchParams.get("dispositivo");
+  const bitacoraParams = searchParams.get("bitacora");
 
   const check = async (claim) => {
     const res = await checkRole(claim.sub, "Soporte");
@@ -74,9 +75,13 @@ function ViewRespuesta() {
           className="table-responsive mx-3"
           style={{ background: "#eff3f7" }}
         >
-          {dispositivoParam && (
-            <DiagnosticoSelector dispositivo={dispositivoParam} />
-          )}
+          {dispositivoParam ||
+            (bitacoraParams && (
+              <DiagnosticoSelector
+                dispositivo={dispositivoParam}
+                bitacora={bitacoraParams}
+              />
+            ))}
         </div>
         <div className="w-100 h-100 d-flex align-items-center justify-content-center flex-column">
           <label
