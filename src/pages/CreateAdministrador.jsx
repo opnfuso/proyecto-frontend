@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { createAdministradorRequest } from "../api/administrador.api";
+import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
 
 function CreateAdministrador() {
   return (
@@ -30,6 +31,7 @@ function CreateAdministrador() {
                 email: "",
                 password: "",
               }}
+              validationSchema={editAdministradorSchema}
               onSubmit={(values, { setSubmitting }) => {
                 const handleSubmit = async () => {
                   Swal.fire({

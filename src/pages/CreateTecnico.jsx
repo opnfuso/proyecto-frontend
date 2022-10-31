@@ -5,6 +5,7 @@ import logo from "../assets/img/Logo.png";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { createTecnicoRequest } from "../api/tecnico.api";
+import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
 
 function CreateTecnico() {
   return (
@@ -29,6 +30,7 @@ function CreateTecnico() {
               email: "",
               password: "",
             }}
+            validationSchema={editAdministradorSchema}
             onSubmit={(values, { setSubmitting }) => {
               const handleSubmit = async () => {
                 Swal.fire({

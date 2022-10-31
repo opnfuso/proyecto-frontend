@@ -11,6 +11,7 @@ import {
 } from "../api/tecnico.api";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
+import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
 
 function DetallesTecnico() {
   const [tecnico, setTecnico] = useState([]);
@@ -134,6 +135,7 @@ function DetallesTecnico() {
                 email: tecnico.email,
                 password: "",
               }}
+              validationSchema={editAdministradorSchema}
               onSubmit={(values, { setSubmitting }) => {
                 const handleSubmit = async () => {
                   Swal.fire({
