@@ -69,35 +69,39 @@ function Diagnosticador() {
           </nav>
         </div>
         <div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Cliente</th>
-                <th>Modelo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <Select
-                    options={options1}
-                    onChange={(val) => {
-                      getOptions2(val);
-                    }}
-                  />
-                </td>
-                <td>
-                  <Select
-                    options={options2}
-                    onChange={(val) => {
-                      setDispositivo(val.value);
-                    }}
-                  />
-                </td>
-              </tr>
-              <tr />
-            </tbody>
-          </table>
+          {bitacoraParam ? (
+            <></>
+          ) : (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Modelo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <Select
+                      options={options1}
+                      onChange={(val) => {
+                        getOptions2(val);
+                      }}
+                    />
+                  </td>
+                  <td>
+                    <Select
+                      options={options2}
+                      onChange={(val) => {
+                        setDispositivo(val.value);
+                      }}
+                    />
+                  </td>
+                </tr>
+                <tr />
+              </tbody>
+            </table>
+          )}
         </div>
         <div
           className="container d-flex flex-column align-items-center justify-content-center"
@@ -112,6 +116,8 @@ function Diagnosticador() {
                   to={
                     dispositivo.length > 0
                       ? `${diagnosticoPasado}?dispositivo=${dispositivo}`
+                      : bitacoraParam
+                      ? `${diagnosticoPasado}?bitacora=${bitacoraParam}`
                       : diagnosticoPasado
                   }
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
@@ -155,6 +161,8 @@ function Diagnosticador() {
                 to={
                   dispositivo.length > 0
                     ? `/diagnosticador-rapido?dispositivo=${dispositivo}`
+                    : bitacoraParam
+                    ? `/diagnosticador-rapido?bitacora=${bitacoraParam}`
                     : "/diagnosticador-rapido"
                 }
                 className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"

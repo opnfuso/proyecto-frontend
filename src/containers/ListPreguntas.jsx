@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ItemPregunta from "../components/ItemPregunta";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function ListPreguntas({ preguntas }) {
+  const [searchParams] = useSearchParams();
+  const bitacoraParam = searchParams.get("bitacora");
+  const dispositivo = searchParams.get("dispositivo");
   const [selectedPreguntasId, setSelectedPreguntasId] = useState([
     "633b146d4db46330d41ad1c0",
   ]);
@@ -44,9 +47,19 @@ function ListPreguntas({ preguntas }) {
         })}
       </form>
       <Link
-        to={`/diagnosticador/${
-          selectedPreguntasId[selectedPreguntasId.length - 1]
-        }`}
+        to={
+          dispositivo
+            ? `/diagnosticador/${
+                selectedPreguntasId[selectedPreguntasId.length - 1]
+              }?dispositivo=${dispositivo}`
+            : bitacoraParam
+            ? `/diagnosticador/${
+                selectedPreguntasId[selectedPreguntasId.length - 1]
+              }?bitacora=${bitacoraParam}`
+            : `/diagnosticador/${
+                selectedPreguntasId[selectedPreguntasId.length - 1]
+              }`
+        }
         className="btn btn-primary align-self-center btn-detalles mb-4"
         type="button"
       >
