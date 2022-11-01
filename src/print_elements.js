@@ -1,18 +1,19 @@
-var PrintElements = (function () {
+
+export const PrintElements = (function () {
     "use strict";
 
-    var hideFromPrintClass = "pe-no-print";
-    var preservePrintClass = "pe-preserve-print";
-    var preserveAncestorClass = "pe-preserve-ancestor";
-    var bodyElementName = "BODY";
+    const hideFromPrintClass = "pe-no-print";
+    const preservePrintClass = "pe-preserve-print";
+    const preserveAncestorClass = "pe-preserve-ancestor";
+    const bodyElementName = "BODY";
 
-    var _hide = function (element) {
+    const _hide = function (element) {
         if (!element.classList.contains(preservePrintClass)) {
             element.classList.add(hideFromPrintClass);
         }
     };
 
-    var _preserve = function (element, isStartingElement) {
+    const _preserve = function (element, isStartingElement) {
         element.classList.remove(hideFromPrintClass);
         element.classList.add(preservePrintClass);
         if (!isStartingElement) {
@@ -20,14 +21,14 @@ var PrintElements = (function () {
         }
     };
 
-    var _clean = function (element) {
+    const _clean = function (element) {
         element.classList.remove(hideFromPrintClass);
         element.classList.remove(preservePrintClass);
         element.classList.remove(preserveAncestorClass);
     };
 
-    var _walkSiblings = function (element, callback) {
-        var sibling = element.previousElementSibling;
+    const _walkSiblings = function (element, callback) {
+        const sibling = element.previousElementSibling;
         while (sibling) {
             callback(sibling);
             sibling = sibling.previousElementSibling;
@@ -39,18 +40,18 @@ var PrintElements = (function () {
         }
     };
 
-    var _attachPrintClasses = function (element, isStartingElement) {
+    const _attachPrintClasses = function (element, isStartingElement) {
         _preserve(element, isStartingElement);
         _walkSiblings(element, _hide);
     };
 
-    var _cleanup = function (element, isStartingElement) {
+    const _cleanup = function (element, isStartingElement) {
         _clean(element);
         _walkSiblings(element, _clean);
     };
 
-    var _walkTree = function (element, callback) {
-        var currentElement = element;
+    const _walkTree = function (element, callback) {
+        const currentElement = element;
         callback(currentElement, true);
         currentElement = currentElement.parentElement;
         while (currentElement && currentElement.nodeName !== bodyElementName) {
@@ -59,8 +60,8 @@ var PrintElements = (function () {
         }
     };
 
-    var _print = function (elements) {
-        for (var i = 0; i < elements.length; i++) {
+    const _print = function (elements) {
+        for (const i = 0; i < elements.length; i++) {
             _walkTree(elements[i], _attachPrintClasses);
         }
         window.print();

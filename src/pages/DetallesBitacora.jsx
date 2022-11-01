@@ -15,6 +15,7 @@ import { getTecnicosRequest } from "../api/tecnico.api";
 import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
 import { usePrompt } from "../components/usePrompt.js";
+import {PrintElements} from "print-elements.js"
 
 function DetallesBitacora() {
   const [bitacora, setBitacora] = useState({ fecha_salida: "" });
@@ -481,7 +482,7 @@ function DetallesBitacora() {
                             </button>
                             <button
                               onClick={() => {
-                                window.print();
+                                PrintElements.print(document.getElementById("content-wrapper"));
                               }}
                               className="btn btn-primary d-block"
                               type="button"
