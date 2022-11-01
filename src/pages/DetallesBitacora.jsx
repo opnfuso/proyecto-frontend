@@ -221,7 +221,9 @@ function DetallesBitacora() {
   return (
     <div id="wapper">
       <Navbar />
-      <nav className="navbar navbar-light navbar-expand-md py-3">
+      <div id="content-wrapper" className="d-flex flex-column">
+        <div id="content">
+          <nav className="navbar navbar-light navbar-expand-md py-3">
             <div className="container d-flex justify-content-between">
               <div className="navbar-brand d-flex align-items-center" href="#">
                 <span style={{ color: "rgb(9, 44, 77)", fontWeight: "bold" }}>
@@ -230,9 +232,6 @@ function DetallesBitacora() {
               </div>
             </div>
           </nav>
-      <div id="content-wrapper" className="d-flex flex-column">
-        <div id="content">
-
           <div className="container">
             <div className="row">
               <div className="col">
