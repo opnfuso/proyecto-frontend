@@ -96,7 +96,7 @@ const CreateCliente = () => {
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="nombre" />
+                            <ErrorMessage type="text" name="nombres" />
                           </div>
                         </div>
                       </div>

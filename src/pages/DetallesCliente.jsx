@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import Cover from "../assets/img/Cover.png";
 import Avatar from "../assets/img/Avatar Wrapper.png";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -11,6 +11,7 @@ import {
   getClienteRequest,
   updateClienteRequest,
 } from "../api/cliente.api";
+import { createClienteSchema } from "../schemas/clientes/create.schema";
 
 function DetallesCliente() {
   const [cliente, setCliente] = useState({});
@@ -169,6 +170,7 @@ function DetallesCliente() {
                 handleSubmit();
                 setSubmitting(false);
               }}
+              validationSchema={createClienteSchema}
             >
               {({ handleSubmit, isSubmitting }) => (
                 <form onSubmit={handleSubmit} style={{ marginTop: 20 }}>
@@ -197,6 +199,9 @@ function DetallesCliente() {
                               required
                             />
                           </div>
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="nombres" />
+                          </div>
                         </div>
                       </div>
                       <div className="col">
@@ -212,6 +217,9 @@ function DetallesCliente() {
                               placeholder="Perez Rincon"
                               required
                             />
+                          </div>
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="apellidos" />
                           </div>
                         </div>
                       </div>
