@@ -34,7 +34,7 @@ function CreateTecnico() {
             onSubmit={(values, { setSubmitting }) => {
               const handleSubmit = async () => {
                 Swal.fire({
-                  title: "Crear un nuevo tecnico",
+                  title: "Crear un nuevo técnico",
                   icon: "question",
                   showDenyButton: true,
                   confirmButtonText: "Crear",
@@ -46,7 +46,7 @@ function CreateTecnico() {
 
                       if (response.status === 201) {
                         Swal.fire({
-                          title: "Tecnico creado con exito",
+                          title: "Técnico creado con exito",
                           icon: "success",
                         });
                       }
@@ -70,7 +70,7 @@ function CreateTecnico() {
                 <div>
                   <div className="row">
                     <div className="col">
-                      <h1>Registro de tecnico</h1>
+                      <h1>Registro de técnico</h1>
                     </div>
                   </div>
                   <div

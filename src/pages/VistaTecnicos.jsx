@@ -29,7 +29,7 @@ const VistaTecnicos = () => {
             <div className="container d-flex justify-content-between">
               <div className="navbar-brand d-flex align-items-center" href="#">
                 <span style={{ color: "rgb(9,44,77)", fontWeight: "bold" }}>
-                  Tecnicos
+                  Técnicos
                 </span>
               </div>
               <Link

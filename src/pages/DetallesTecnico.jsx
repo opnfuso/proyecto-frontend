@@ -108,7 +108,7 @@ function DetallesTecnico() {
             <div className="container d-flex justify-content-between">
               <div className="navbar-brand d-flex align-items-center" href="#">
                 <span style={{ color: "rgb(9,44,77)", fontWeight: "bold" }}>
-                  Detalles de tecnico
+                  Detalles de técnico
                 </span>
               </div>
             </div>

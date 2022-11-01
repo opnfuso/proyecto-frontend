@@ -29,7 +29,7 @@ const SeleccionUsuarios = () => {
             <div className="container d-flex justify-content-between">
               <div className="navbar-brand d-flex align-items-center">
                 <span style={{ color: "rgb(9,44,77)", fontWeight: "bold" }}>
-                  Selecciona la vista
+                  Selecciona el usuario
                 </span>
               </div>
             </div>
@@ -69,7 +69,7 @@ const SeleccionUsuarios = () => {
                   className="btn btn-primary d-flex align-items-center justify-content-center btn-vistas"
                   to="/tecnicos"
                 >
-                  Tecnicos
+                  Técnicos
                 </Link>
               )}
             </div>

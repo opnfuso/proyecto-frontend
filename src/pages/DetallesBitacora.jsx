@@ -340,7 +340,7 @@ function DetallesBitacora() {
                                         className="form-check-label ms-2"
                                         htmlFor="flexCheckDefault"
                                       >
-                                        Termino de bitacora
+                                        Entregado
                                       </label>
                                       <label
                                         className="form-check-label"

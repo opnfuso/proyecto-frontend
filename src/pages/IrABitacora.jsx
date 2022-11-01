@@ -27,8 +27,8 @@ function IrABitacora() {
     res.data.forEach((bitacora) => {
       const option = {
         value: bitacora,
-        label: `Fecha de salida: ${
-          bitacora.fecha_salida.split("T")[0]
+        label: `Fecha de entrada: ${
+          bitacora.dispositivo.fecha_recibido.split("T")[0]
         } Terminado: ${bitacora.terminado ? "Si" : "No"}`,
       };
 
