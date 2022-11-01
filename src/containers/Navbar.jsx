@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="container-fluid d-flex flex-column p-0">
         <Link
           className="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-          to="/"
+          to="/usuarios"
         >
           <div className="sidebar-brand-icon rotate-n-15">
             <img src={logo} style={{ width: 40, height: 40 }} alt="Logo" />
