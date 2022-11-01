@@ -482,7 +482,7 @@ function DetallesBitacora() {
                             </button>
                             <button
                               onClick={() => {
-                                PrintElements.print(document.getElementById("content-wrapper"));
+                                PrintElements.print([document.getElementById("content-wrapper")]);
                               }}
                               className="btn btn-primary d-block"
                               type="button"
