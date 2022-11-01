@@ -15,7 +15,7 @@ import { getTecnicosRequest } from "../api/tecnico.api";
 import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
 import { usePrompt } from "../components/usePrompt.js";
-import {PrintElements} from "print-elements.js"
+import {PrintElements} from "../print_elements"
 
 function DetallesBitacora() {
   const [bitacora, setBitacora] = useState({ fecha_salida: "" });
