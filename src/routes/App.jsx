@@ -39,7 +39,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/usuarios" element={<Navbar />} />
+          {/* <Route path="/" element={<Navbar />} /> */}
           <Route path="/usuarios" element={<SeleccionUsuarios />} />
           <Route
             path="/administradores"
