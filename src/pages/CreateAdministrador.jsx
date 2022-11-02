@@ -55,11 +55,18 @@ function CreateAdministrador() {
                         }
                       }
                     } catch (error) {
-                      console.error(error);
-                      Swal.fire({
-                        title: "Hubo un error",
-                        icon: "error",
-                      });
+                      console.log(error);
+                      if (error.response && error.response.status === 409) {
+                        Swal.fire({
+                          title: "El email ya existe en el sistema",
+                          icon: "error",
+                        });
+                      } else {
+                        Swal.fire({
+                          title: "Hubo un error",
+                          icon: "error",
+                        });
+                      }
                     }
                   });
                 };
