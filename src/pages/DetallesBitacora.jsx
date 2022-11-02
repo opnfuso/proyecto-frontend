@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import Navbar from "../containers/Navbar.jsx";
 import { getBitacoraRequest, updateBitacoraRequest } from "../api/bitacora.api";
@@ -15,7 +15,8 @@ import { getTecnicosRequest } from "../api/tecnico.api";
 import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
 import { usePrompt } from "../components/usePrompt.js";
-import {PrintElements} from "../print_elements"
+import { PrintElements } from "../print_elements"
+import ReactToPrint from 'react-to-print';
 
 function DetallesBitacora() {
   const [bitacora, setBitacora] = useState({ fecha_salida: "" });
@@ -40,6 +41,8 @@ function DetallesBitacora() {
   const reparacion = searchParams.get("reparacion");
   const [termino, setTermino] = useState(false);
   usePrompt("Seguro que quieres salir?", true);
+
+  const componentRef = useRef();
 
   const getBitacora = async (id) => {
     const res = await getBitacoraRequest(id);
@@ -222,7 +225,7 @@ function DetallesBitacora() {
   return (
     <div id="wapper">
       <Navbar />
-      <div id="content-wrapper" className="d-flex flex-column">
+      <div id="content-wrapper" className="d-flex flex-column" ref={componentRef}>
         <div id="content">
           <nav className="navbar navbar-light navbar-expand-md py-3">
             <div className="container d-flex justify-content-between">
@@ -480,7 +483,23 @@ function DetallesBitacora() {
                             >
                               Guardar
                             </button>
-                            <button
+                            <ReactToPrint
+                              trigger={() => 
+                              <button 
+                              className="btn btn-primary d-block" 
+                              type="button" 
+                              style={{ 
+                                display: "none",
+                                margin: "10px auto", 
+                                background: "#7e92a2", 
+                                border: "none", 
+                                borderRadius: 10 
+                              }}>
+                                Imprimir
+                                </button>}
+                                content={() => componentRef.current}
+                                />
+                            {/* <button
                               onClick={() => {
                                 PrintElements.print([document.getElementById("content-wrapper")]);
                               }}
@@ -494,7 +513,7 @@ function DetallesBitacora() {
                               }}
                             >
                               Imprimir
-                            </button>
+                            </button> */}
                           </div>
                           <Link
                             to={`/diagnosticador?bitacora=${params.id3}`}
