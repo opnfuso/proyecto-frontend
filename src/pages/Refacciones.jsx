@@ -97,7 +97,7 @@ function Refacciones({ query }) {
                 options={options}
                 isClearable={true}
                 onChange={(value) => setPagina(value.value)}
-                className="mb-2"
+                className="mb-2 col col-sm-2 "
               />
               <div id="refacciones" className="d-flex flex-column">
                 {refacciones.map((refaccion, index) => {
