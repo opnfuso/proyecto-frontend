@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../containers/Navbar";
 import Cover from "../assets/img/Cover.png";
 import Avatar from "../assets/img/Avatar Wrapper.png";
-import { Field, Formik } from "formik";
+import { Field, Formik, ErrorMessage } from "formik";
 import { Link, useParams } from "react-router-dom";
 import {
   getDispositivoRequest,
   updateDispositivoRequest,
 } from "../api/dispositivo.api";
 import Swal from "sweetalert2";
+import { createDispositivoSchema } from "../schemas/dispositivos/create.schema";
 
 function DetallesDispositivo() {
   const [dispositivo, setDispositivo] = useState({});
@@ -63,6 +64,7 @@ function DetallesDispositivo() {
               </div>
             </div>
             <Formik
+            validationSchema={createDispositivoSchema}
               enableReinitialize={true}
               initialValues={{
                 imei: dispositivo.imei,
@@ -134,6 +136,9 @@ function DetallesDispositivo() {
                               placeholder="apple"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="marca" />
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -150,6 +155,9 @@ function DetallesDispositivo() {
                               placeholder="iphone 12"
                               required
                             />
+                              <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="modelo" />
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -177,6 +185,9 @@ function DetallesDispositivo() {
                               placeholder={6215731286654}
                               required
                             />
+                            <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="imei" />
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -192,6 +203,9 @@ function DetallesDispositivo() {
                               name="numero_serie"
                               placeholder="DNQDQJMH0DXT"
                             />
+                            <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="numero_serie" />
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -218,6 +232,9 @@ function DetallesDispositivo() {
                               name="fecha_recibido"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                            <ErrorMessage type="date" name="fecha_recibido" />
+                          </div>
                           </div>
                         </div>
                       </div>

@@ -466,6 +466,7 @@ function DetallesBitacora() {
                                   borderRadius: 129,
                                   border: "none",
                                 }}
+                                required
                               >
                                 <i className="fas fa-plus" />
                               </button>
