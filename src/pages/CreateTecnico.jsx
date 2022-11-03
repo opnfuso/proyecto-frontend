@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import image from "../assets/img/seated businessman in dark blue suit with laptop.png";
 import logo from "../assets/img/Logo.png";
-import { Field, Formik } from "formik";
+import { Field, Formik, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
 import { createTecnicoRequest } from "../api/tecnico.api";
 import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
@@ -139,6 +139,9 @@ function CreateTecnico() {
                             required
                           />
                         </div>
+                        <div style={{ color: "red" }}>
+                            <ErrorMessage type="date" name="fecha_nacimiento" />
+                          </div>
                       </div>
                     </div>
                     <div className="col">

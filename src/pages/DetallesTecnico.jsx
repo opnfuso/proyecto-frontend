@@ -9,7 +9,7 @@ import {
   getTecnicoRequest,
   updateTecnicoRequest,
 } from "../api/tecnico.api";
-import { Field, Formik } from "formik";
+import { Field, Formik, ErrorMessage } from "formik";
 import Swal from "sweetalert2";
 import { editAdministradorSchema } from "../schemas/administradores/edit.schema";
 
@@ -241,7 +241,13 @@ function DetallesTecnico() {
                               name="fecha_nacimiento"
                               required
                             />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage
+                                type="date"
+                                name="fecha_nacimiento"
+                              />
                           </div>
+                        </div>
                         </div>
                       </div>
                       <div className="col">
