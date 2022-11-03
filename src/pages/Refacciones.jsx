@@ -64,7 +64,7 @@ function Refacciones({ query }) {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Buscador Refaccion</th>
+                      <th>Buscador Refacción</th>
                     </tr>
                   </thead>
                   <tbody>

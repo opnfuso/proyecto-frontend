@@ -72,10 +72,12 @@ const CreateDispositivo = () => {
               handleSubmit();
               setSubmitting(false);
             }}
-            // validationSchema={createDispositivoSchema}
+            validationSchema={createDispositivoSchema}
           >
             {({ handleSubmit, isSubmitting }) => (
-              <form onSubmit={handleSubmit}>
+              <form 
+              
+              onSubmit={handleSubmit}>
                 <div>
                   <div className="row">
                     <div className="col">
@@ -173,7 +175,7 @@ const CreateDispositivo = () => {
                             placeholder="DNQDQJMH0DXT"
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="Nserie" />
+                            <ErrorMessage type="text" name="numero_serie" />
                           </div>
                         </div>
                       </div>
@@ -202,7 +204,7 @@ const CreateDispositivo = () => {
                             required
                           />
                           <div style={{ color: "red" }}>
-                            <ErrorMessage type="date" name="date" />
+                            <ErrorMessage type="date" name="fecha_recibido" />
                           </div>
                         </div>
                       </div>
