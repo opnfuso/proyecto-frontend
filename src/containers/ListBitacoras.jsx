@@ -7,7 +7,7 @@ function ListBitacoras({ bitacoras }) {
     <table className="table my-0" id="dataTable">
       <thead>
         <tr>
-          <th>Terminado</th>
+          <th>Entregado</th>
           <th>Fecha recibido</th>
           <th>Editar</th>
         </tr>
