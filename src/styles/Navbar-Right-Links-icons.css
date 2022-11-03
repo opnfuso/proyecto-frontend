@@ -100,3 +100,7 @@
   margin: 20px 20px;
 }
 
+.inicio {
+  background: repeating-linear-gradient(145deg, black -12%, #7e92a2 105%);
+}
+

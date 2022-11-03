@@ -33,13 +33,14 @@ import VistaDispositivos from "../pages/VistaDispositivos";
 import VistaSolucion from "../pages/VistaSolucion";
 import VistaTecnicos from "../pages/VistaTecnicos";
 import "../styles/styles.css";
+import Index from "../pages/Index";
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<SeleccionUsuarios />} />
+          <Route path="/" element={<Index />} />
           <Route path="/usuarios" element={<SeleccionUsuarios />} />
           <Route
             path="/administradores"
