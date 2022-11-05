@@ -75,6 +75,28 @@ function DiagnosticadorGeneral() {
               ) : (
                 <></>
               )}
+
+              {dispositivo ? (
+                <Link
+                  to={`/contacto-soporte?dispositivo=${dispositivo}&pregunta=${params.id}`}
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#514ef3" }}
+                >
+                  Enviar un reporte a soporte
+                </Link>
+              ) : bitacoraParams ? (
+                <Link
+                  to={`/contacto-soporte?bitacora=${bitacoraParams}&pregunta=${params.id}`}
+                  className="btn btn-primary"
+                  type="button"
+                  style={{ background: "#514ef3" }}
+                >
+                  Enviar un reporte a soporte
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
           </nav>
         </div>
