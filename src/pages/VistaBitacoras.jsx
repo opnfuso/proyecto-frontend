@@ -6,17 +6,24 @@ import { Link, useParams } from "react-router-dom";
 
 function VistaBitacoras() {
   const [bitacoras, setBitacoras] = useState([]);
+  const [terminadas, setTerminadas] = useState(true);
   const params = useParams();
 
   const getBitacoras = async (id) => {
     const res = await getBitacorasByDispositivoId(id);
+
+    res.data.forEach((bit) => {
+      if (bit.terminado === false) {
+        setTerminadas(false);
+      }
+    });
 
     setBitacoras(res.data);
   };
 
   useEffect(() => {
     getBitacoras(params.id2);
-  });
+  }, []);
 
   return (
     <div id="wapper">
@@ -30,13 +37,17 @@ function VistaBitacoras() {
                   Bitacoras
                 </span>
               </div>
-              <Link
-                to="new"
-                className="btn btn-primary btn-agregar-usuario"
-                href="#"
-              >
-                Agregar nuevo +
-              </Link>
+              {terminadas ? (
+                <Link
+                  to="new"
+                  className="btn btn-primary btn-agregar-usuario"
+                  href="#"
+                >
+                  Agregar nuevo +
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
           </nav>
           <div className="container-fluid">
