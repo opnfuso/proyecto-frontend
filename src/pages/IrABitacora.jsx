@@ -27,9 +27,9 @@ function IrABitacora() {
     res.data.forEach((bitacora) => {
       const option = {
         value: bitacora,
-        label: `Fecha de entrada: ${
-          bitacora.dispositivo.fecha_recibido.split("T")[0]
-        } Terminado: ${bitacora.terminado ? "Si" : "No"}`,
+        label: `Id: ${bitacora.id} Terminado: ${
+          bitacora.terminado ? "Si" : "No"
+        }`,
       };
 
       opt.push(option);
@@ -79,9 +79,7 @@ function IrABitacora() {
     res.data.forEach((bit) => {
       const option = {
         value: bit,
-        label: `fecha recibido: ${
-          bit.dispositivo.fecha_recibido.split("T")[0]
-        } Terminado: ${bit.terminado ? "Si" : "No"}`,
+        label: `Id: ${bit.id} Terminado: ${bit.terminado ? "Si" : "No"}`,
       };
 
       opt.push(option);
