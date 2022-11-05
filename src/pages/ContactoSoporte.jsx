@@ -54,7 +54,7 @@ function ContactoSoporte() {
                       disp,
                       pregunta
                     );
-                    if (response.status === 202) {
+                    if (response.status === 201) {
                       Swal.fire({
                         title: "Mensaje enviado con exito",
                         icon: "success",
