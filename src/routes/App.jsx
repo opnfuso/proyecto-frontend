@@ -34,6 +34,7 @@ import VistaSolucion from "../pages/VistaSolucion";
 import VistaTecnicos from "../pages/VistaTecnicos";
 import "../styles/styles.css";
 import Index from "../pages/Index";
+import ContactoSoporte from "../pages/ContactoSoporte";
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
           <Route path="/new/manual" element={<CreateReparacion />} />
           <Route path="/manual/:id" element={<Reparacion />} />
           <Route path="/ir-a-bitacora" element={<IrABitacora />} />
+          <Route path="/contacto-soporte" element={<ContactoSoporte />} />
         </Routes>
       </Layout>
     </BrowserRouter>
