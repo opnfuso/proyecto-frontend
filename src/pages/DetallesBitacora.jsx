@@ -278,7 +278,9 @@ function DetallesBitacora() {
                   initialValues={{
                     terminado: bitacora.terminado,
                     reparado: bitacora.reparado,
-                    fecha_salida: bitacora.fecha_salida.split("T")[0],
+                    fecha_salida: bitacora.fecha_salida
+                      ? bitacora.fecha_salida.split("T")[0]
+                      : "",
                     notas: bitacora.notas,
                     costo: bitacora.costo,
                   }}
