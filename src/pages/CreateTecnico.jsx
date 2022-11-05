@@ -53,10 +53,17 @@ function CreateTecnico() {
                     }
                   } catch (error) {
                     console.error(error);
-                    Swal.fire({
-                      title: "Hubo un error",
-                      icon: "error",
-                    });
+                    if (error.response && error.response.status === 409) {
+                      Swal.fire({
+                        title: "El email ya existe en el sistema",
+                        icon: "error",
+                      });
+                    } else {
+                      Swal.fire({
+                        title: "Hubo un error",
+                        icon: "error",
+                      });
+                    }
                   }
                 });
               };
@@ -140,8 +147,8 @@ function CreateTecnico() {
                           />
                         </div>
                         <div style={{ color: "red" }}>
-                            <ErrorMessage type="date" name="fecha_nacimiento" />
-                          </div>
+                          <ErrorMessage type="date" name="fecha_nacimiento" />
+                        </div>
                       </div>
                     </div>
                     <div className="col">
