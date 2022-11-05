@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 function ItemBitacora({ bitacora }) {
   return (
     <tr>
+      <td>{bitacora.id}</td>
       <td>{bitacora.terminado ? "Si" : "No"}</td>
-      <td>{bitacora.dispositivo.fecha_recibido.split("T")[0]}</td>
       <td>
         <Link to={`${bitacora.id}`}>
           <i className="fas fa-edit" />
