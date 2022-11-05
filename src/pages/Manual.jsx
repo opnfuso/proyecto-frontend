@@ -3,12 +3,16 @@ import ListReparaciones from "../containers/ListReparaciones";
 import Navbar from "../containers/Navbar";
 import { getManualReparacionesReparacionesByTitleRequest } from "../api/manual.api";
 import { Link, useSearchParams } from "react-router-dom";
+import { getDispositivoRequest } from "../api/dispositivo.api";
+import { getBitacoraRequest } from "../api/bitacora.api";
 
 function Manual() {
   const [manuales, setManuales] = useState([]);
   const refQuery = useRef("");
   const [searchParams] = useSearchParams();
   const titulo = searchParams.get("titulo");
+  const dispositivoParam = searchParams.get("dispositivo");
+  const bitacoraParam = searchParams.get("bitacora");
 
   const getManuales = async () => {
     if (refQuery.current.value.length > 0) {
@@ -18,7 +22,6 @@ function Manual() {
 
       setManuales(res.data);
     } else if (titulo) {
-      console.log(titulo);
       const res = await getManualReparacionesReparacionesByTitleRequest(
         titulo.trim()
       );
@@ -27,8 +30,33 @@ function Manual() {
     }
   };
 
+  const getDispositivo = async () => {
+    const res = await getDispositivoRequest(dispositivoParam);
+    const res2 = await getManualReparacionesReparacionesByTitleRequest(
+      `${titulo.trim()} ${res.data.modelo}`
+    );
+
+    setManuales(res2.data);
+  };
+
+  const getBitacora = async () => {
+    const res = await getBitacoraRequest(bitacoraParam);
+    console.log(res.data);
+    const res2 = await getManualReparacionesReparacionesByTitleRequest(
+      `${titulo.trim()} ${res.data.dispositivo.modelo}`
+    );
+
+    setManuales(res2.data);
+  };
+
   useEffect(() => {
-    getManuales();
+    if (dispositivoParam) {
+      getDispositivo();
+    } else if (bitacoraParam) {
+      getBitacora();
+    } else {
+      getManuales();
+    }
   }, []);
 
   return (
