@@ -48,12 +48,15 @@ function DetallesBitacora() {
   const [searchParams] = useSearchParams();
   const reparacion = searchParams.get("reparacion");
   const [termino, setTermino] = useState(false);
+  const [terminado, setTerminado] = useState(false);
   usePrompt("Seguro que quieres salir?", true);
 
   const componentRef = useRef();
 
   const getBitacora = async (id) => {
     const res = await getBitacoraRequest(id);
+
+    setTerminado(res.data.terminado);
 
     if (
       res.data.ReparacionesBitacoras &&
@@ -238,8 +241,10 @@ function DetallesBitacora() {
   };
 
   useEffect(() => {
-    if (reparacion) {
-      getReparacion(reparacion);
+    if (!terminado) {
+      if (reparacion) {
+        getReparacion(reparacion);
+      }
     }
     getCliente(params.id);
     getBitacora(params.id3);
@@ -350,25 +355,42 @@ function DetallesBitacora() {
                                 <tr>
                                   <th>Progreso</th>
                                   <th>Fecha de Entrada</th>
-                                  {termino && <th>Fecha de entregado</th>}
+                                  {terminado ? (
+                                    <th>Fecha de entregado</th>
+                                  ) : termino ? (
+                                    <th>Fecha de entregado</th>
+                                  ) : (
+                                    <></>
+                                  )}
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
                                   <td>
                                     <div>
-                                      <Field
-                                        onClick={(val) => {
-                                          setTermino(
-                                            val.target.value === "false"
-                                          );
-                                        }}
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        defaultValue
-                                        id="flexCheckDefault"
-                                        name="terminado"
-                                      />
+                                      {terminado ? (
+                                        <Field
+                                          disabled={true}
+                                          className="form-check-input"
+                                          type="checkbox"
+                                          defaultValue
+                                          id="flexCheckDefault"
+                                          name="terminado"
+                                        />
+                                      ) : (
+                                        <Field
+                                          onClick={(val) => {
+                                            setTermino(
+                                              val.target.value === "false"
+                                            );
+                                          }}
+                                          className="form-check-input"
+                                          type="checkbox"
+                                          defaultValue
+                                          id="flexCheckDefault"
+                                          name="terminado"
+                                        />
+                                      )}
                                       <label
                                         className="form-check-label ms-2"
                                         htmlFor="flexCheckDefault"
@@ -379,18 +401,29 @@ function DetallesBitacora() {
                                         className="form-check-label"
                                         htmlFor="flexCheckDefault"
                                       >
-                                        <Field
-                                          onClick={(val) => {
-                                            setReparado(
-                                              val.target.value === "false"
-                                            );
-                                          }}
-                                          className="form-check-input ms-2 me-2"
-                                          type="checkbox"
-                                          defaultValue
-                                          id="flexCheckDefault"
-                                          name="reparado"
-                                        />
+                                        {terminado ? (
+                                          <Field
+                                            disabled={true}
+                                            className="form-check-input ms-2 me-2"
+                                            type="checkbox"
+                                            defaultValue
+                                            id="flexCheckDefault"
+                                            name="reparado"
+                                          />
+                                        ) : (
+                                          <Field
+                                            onClick={(val) => {
+                                              setReparado(
+                                                val.target.value === "false"
+                                              );
+                                            }}
+                                            className="form-check-input ms-2 me-2"
+                                            type="checkbox"
+                                            defaultValue
+                                            id="flexCheckDefault"
+                                            name="reparado"
+                                          />
+                                        )}
                                         Reparado
                                       </label>
                                     </div>
@@ -398,7 +431,17 @@ function DetallesBitacora() {
                                   <td>
                                     {dispositivo.fecha_recibido.split("T")[0]}
                                   </td>
-                                  {termino && (
+                                  {terminado ? (
+                                    <td>
+                                      <Field
+                                        disabled={true}
+                                        className="form-control"
+                                        type="date"
+                                        name="fecha_salida"
+                                        required
+                                      />
+                                    </td>
+                                  ) : termino ? (
                                     <td>
                                       <Field
                                         className="form-control"
@@ -407,12 +450,14 @@ function DetallesBitacora() {
                                         required
                                       />
                                     </td>
+                                  ) : (
+                                    <></>
                                   )}
                                 </tr>
                               </tbody>
                             </table>
                           </div>
-                          {reparado ? (
+                          {/* {reparado ? (
                             <Field
                               className="form-control"
                               name="notas"
@@ -432,16 +477,49 @@ function DetallesBitacora() {
                               as="textarea"
                               required
                             />
+                          )} */}
+                          {terminado ? (
+                            <Field
+                              disabled={true}
+                              className="form-control"
+                              name="notas"
+                              placeholder="notas de bitacora:"
+                              rows={4}
+                              defaultValue={""}
+                              as="textarea"
+                              required
+                            />
+                          ) : (
+                            <Field
+                              className="form-control"
+                              name="notas"
+                              placeholder="notas de bitacora:"
+                              rows={4}
+                              defaultValue={""}
+                              as="textarea"
+                              required
+                            />
                           )}
                           <label className="form-label my-4">
                             Costo total
-                            <Field
-                              className="form-control"
-                              type="number"
-                              name="costo"
-                              placeholder={300}
-                              required
-                            />
+                            {terminado ? (
+                              <Field
+                                disabled={true}
+                                className="form-control"
+                                type="number"
+                                name="costo"
+                                placeholder={300}
+                                required
+                              />
+                            ) : (
+                              <Field
+                                className="form-control"
+                                type="number"
+                                name="costo"
+                                placeholder={300}
+                                required
+                              />
+                            )}
                           </label>
                         </div>
                         <div
@@ -462,31 +540,10 @@ function DetallesBitacora() {
                               Reparación utilizada
                               {defaultinputList1}
                               {inputList1}
-                              <div></div>
                             </label>
-                            <button
-                              onClick={handleClick1}
-                              className="btn btn-primary d-block"
-                              type="button"
-                              style={{
-                                margin: "10px auto",
-                                background: "#7e92a2",
-                                borderRadius: 129,
-                                border: "none",
-                              }}
-                            >
-                              <i className="fas fa-plus" />
-                            </button>
-
-                            <label
-                              className="form-label w-100"
-                              style={{ marginTop: 30 }}
-                            >
-                              Selecciona tecnico/s involucrado
-                              {defaultinputList2}
-                              {inputList2}
+                            {terminado ? (
                               <button
-                                onClick={handleClick2}
+                                disabled={true}
                                 className="btn btn-primary d-block"
                                 type="button"
                                 style={{
@@ -495,24 +552,94 @@ function DetallesBitacora() {
                                   borderRadius: 129,
                                   border: "none",
                                 }}
-                                required
                               >
                                 <i className="fas fa-plus" />
                               </button>
-                            </label>
-                            <button
-                              className="btn btn-primary d-block"
-                              type="submit"
-                              disabled={isSubmitting}
-                              style={{
-                                margin: "10px auto",
-                                background: "#092c4b",
-                                border: "none",
-                                borderRadius: 10,
-                              }}
+                            ) : (
+                              <button
+                                onClick={handleClick1}
+                                className="btn btn-primary d-block"
+                                type="button"
+                                style={{
+                                  margin: "10px auto",
+                                  background: "#7e92a2",
+                                  borderRadius: 129,
+                                  border: "none",
+                                }}
+                              >
+                                <i className="fas fa-plus" />
+                              </button>
+                            )}
+
+                            <label
+                              className="form-label w-100"
+                              style={{ marginTop: 30 }}
                             >
-                              Guardar
-                            </button>
+                              Selecciona tecnico/s involucrado
+                              {defaultinputList2}
+                              {inputList2}
+                              {terminado ? (
+                                <button
+                                  disabled={true}
+                                  className="btn btn-primary d-block"
+                                  type="button"
+                                  style={{
+                                    margin: "10px auto",
+                                    background: "#7e92a2",
+                                    borderRadius: 129,
+                                    border: "none",
+                                  }}
+                                  required
+                                >
+                                  <i className="fas fa-plus" />
+                                </button>
+                              ) : (
+                                <button
+                                  onClick={handleClick2}
+                                  className="btn btn-primary d-block"
+                                  type="button"
+                                  style={{
+                                    margin: "10px auto",
+                                    background: "#7e92a2",
+                                    borderRadius: 129,
+                                    border: "none",
+                                  }}
+                                  required
+                                >
+                                  <i className="fas fa-plus" />
+                                </button>
+                              )}
+                            </label>
+                            {terminado ? (
+                              <button
+                                className="btn btn-primary d-block"
+                                type="submit"
+                                disabled={true}
+                                style={{
+                                  margin: "10px auto",
+                                  background: "#092c4b",
+                                  border: "none",
+                                  borderRadius: 10,
+                                }}
+                              >
+                                Guardar
+                              </button>
+                            ) : (
+                              <button
+                                className="btn btn-primary d-block"
+                                type="submit"
+                                disabled={isSubmitting}
+                                style={{
+                                  margin: "10px auto",
+                                  background: "#092c4b",
+                                  border: "none",
+                                  borderRadius: 10,
+                                }}
+                              >
+                                Guardar
+                              </button>
+                            )}
+
                             <ReactToPrint
                               trigger={() => (
                                 <button
@@ -531,21 +658,6 @@ function DetallesBitacora() {
                               )}
                               content={() => componentRef.current}
                             />
-                            {/* <button
-                              onClick={() => {
-                                PrintElements.print([document.getElementById("content-wrapper")]);
-                              }}
-                              className="btn btn-primary d-block"
-                              type="button"
-                              style={{
-                                margin: "10px auto",
-                                background: "#7e92a2",
-                                border: "none",
-                                borderRadius: 10,
-                              }}
-                            >
-                              Imprimir
-                            </button> */}
                           </div>
                           <Link
                             to={`/diagnosticador?bitacora=${params.id3}`}
