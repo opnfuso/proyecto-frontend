@@ -6,7 +6,7 @@ import { getClienteRequest } from "../api/cliente.api";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Field, Formik } from "formik";
 import Swal from "sweetalert2";
-import Select from "react-select";
+import BaseSelect from "react-select";
 import {
   getManualesReparacionesRequest,
   getManualReparacionRequest,
@@ -16,6 +16,15 @@ import { createReparacionBitacoraRequest } from "../api/reparacionBitacora.api";
 import { createTecnicoBitacoraRequest } from "../api/tecnicoBitacora.api";
 import { usePrompt } from "../components/usePrompt.js";
 import ReactToPrint from "react-to-print";
+import FixRequiredSelect from "../components/FixRequiredSelect";
+
+const Select = (props) => (
+  <FixRequiredSelect
+    {...props}
+    SelectComponent={BaseSelect}
+    options={props.options}
+  />
+);
 
 function DetallesBitacora() {
   const [bitacora, setBitacora] = useState({ fecha_salida: "" });
@@ -55,6 +64,19 @@ function DetallesBitacora() {
 
     if (res.data.TecnicosBitacoras && res.data.TecnicosBitacoras.length > 0) {
       addSelectTecnicos(res.data.TecnicosBitacoras);
+    } else {
+      setInputList2(
+        inputList2.concat(
+          <Select
+            className="mt-2"
+            options={options2}
+            onChange={(val) => {
+              setInputValuesList2(inputValuesList2.concat(val));
+            }}
+            required
+          />
+        )
+      );
     }
 
     setBitacora(res.data);
@@ -109,7 +131,9 @@ function DetallesBitacora() {
         label: reparacion.reparacion.titulo,
       };
 
-      inputList.push(<Select value={op} className="mt-2" isDisabled={true} />);
+      inputList.push(
+        <Select value={op} className="mt-2" isDisabled={true} options={{}} />
+      );
 
       setDefaultInputList1(inputList);
     });
@@ -138,6 +162,7 @@ function DetallesBitacora() {
           onChange={(val) => {
             setInputValuesList1(inputValuesList1.concat(val));
           }}
+          required
         />
       )
     );
@@ -152,6 +177,7 @@ function DetallesBitacora() {
           onChange={(val) => {
             setInputValuesList2(inputValuesList2.concat(val));
           }}
+          required
         />
       )
     );
