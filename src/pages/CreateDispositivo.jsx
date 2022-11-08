@@ -28,7 +28,6 @@ const CreateDispositivo = () => {
               modelo: "",
               imei: "",
               numero_serie: "",
-              fecha_recibido: "",
             }}
             onSubmit={(values, { setSubmitting }) => {
               const handleSubmit = async () => {
@@ -46,7 +45,6 @@ const CreateDispositivo = () => {
                         modelo: values.modelo,
                         imei: values.imei,
                         numero_serie: values.numero_serie,
-                        fecha_recibido: values.fecha_recibido,
                         id_cliente: +params.id,
                       };
 
@@ -75,9 +73,7 @@ const CreateDispositivo = () => {
             validationSchema={createDispositivoSchema}
           >
             {({ handleSubmit, isSubmitting }) => (
-              <form 
-              
-              onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div>
                   <div className="row">
                     <div className="col">
@@ -192,20 +188,6 @@ const CreateDispositivo = () => {
                           style={{ margin: 0 }}
                         >
                           <p>Fecha de recibido</p>
-                        </div>
-                        <div
-                          className="col col-md-10 offset-md-1"
-                          style={{ margin: 0 }}
-                        >
-                          <Field
-                            className="form-control"
-                            type="date"
-                            name="fecha_recibido"
-                            required
-                          />
-                          <div style={{ color: "red" }}>
-                            <ErrorMessage type="date" name="fecha_recibido" />
-                          </div>
                         </div>
                       </div>
                     </div>

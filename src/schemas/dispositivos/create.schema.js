@@ -1,4 +1,4 @@
-import { object, string, number, date } from "yup";
+import { object, string, number } from "yup";
 
 export const createDispositivoSchema = object({
   marca: string().required("la marca es requerida"),
@@ -13,7 +13,4 @@ export const createDispositivoSchema = object({
     )
     .required("el imei es requerido"),
   numero_serie: string().required("el numero de serie es requerido"),
-  fecha_recibido: date()
-    .max(new Date(), "la fecha no puede ser mayor a la actual")
-    .required("la fecha de entrada es requerida"),
 });

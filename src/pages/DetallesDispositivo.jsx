@@ -64,50 +64,13 @@ function DetallesDispositivo() {
               </div>
             </div>
             <Formik
-            validationSchema={createDispositivoSchema}
+              validationSchema={createDispositivoSchema}
               enableReinitialize={true}
               initialValues={{
                 imei: dispositivo.imei,
                 modelo: dispositivo.modelo,
                 marca: dispositivo.marca,
                 numero_serie: dispositivo.numero_serie,
-                fecha_recibido: dispositivo.fecha_recibido,
-              }}
-              onSubmit={(values, { setSubmitting }) => {
-                const handleSubmit = async () => {
-                  Swal.fire({
-                    title: "Editar el dispositivo",
-                    icon: "question",
-                    showDenyButton: true,
-                    confirmButtonText: "Editar",
-                    denyButtonText: "Cancelar",
-                  }).then(async (result) => {
-                    try {
-                      if (result.isConfirmed) {
-                        const response = await updateDispositivoRequest(
-                          dispositivo.imei,
-                          values
-                        );
-
-                        if (response.status === 200) {
-                          Swal.fire({
-                            title: "Dispositivo editado con exito",
-                            icon: "success",
-                          });
-                        }
-                      }
-                    } catch (error) {
-                      console.error(error);
-                      Swal.fire({
-                        title: "Hubo un error",
-                        icon: "error",
-                      });
-                    }
-                  });
-                };
-
-                handleSubmit();
-                setSubmitting(false);
               }}
             >
               {({ isSubmitting, handleSubmit }) => (
@@ -134,11 +97,8 @@ function DetallesDispositivo() {
                               type="text"
                               name="marca"
                               placeholder="apple"
-                              required
+                              disabled
                             />
-                            <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="marca" />
-                          </div>
                           </div>
                         </div>
                       </div>
@@ -153,11 +113,8 @@ function DetallesDispositivo() {
                               type="text"
                               name="modelo"
                               placeholder="iphone 12"
-                              required
+                              disabled
                             />
-                              <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="modelo" />
-                          </div>
                           </div>
                         </div>
                       </div>
@@ -183,11 +140,8 @@ function DetallesDispositivo() {
                               type="number"
                               name="imei"
                               placeholder={6215731286654}
-                              required
+                              disabled
                             />
-                            <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="imei" />
-                          </div>
                           </div>
                         </div>
                       </div>
@@ -202,39 +156,8 @@ function DetallesDispositivo() {
                               type="text"
                               name="numero_serie"
                               placeholder="DNQDQJMH0DXT"
+                              disabled
                             />
-                            <div style={{ color: "red" }}>
-                            <ErrorMessage type="text" name="numero_serie" />
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className="row"
-                      style={{ marginTop: 10, marginRight: 0, marginLeft: 0 }}
-                    >
-                      <div className="col">
-                        <div className="row">
-                          <div
-                            className="col col-md-8 offset-md-1"
-                            style={{ margin: 0 }}
-                          >
-                            <p>Fecha de recibido</p>
-                          </div>
-                          <div
-                            className="col-xl-5 col-md-10 offset-md-1"
-                            style={{ margin: 0 }}
-                          >
-                            <Field
-                              className="form-control"
-                              type="date"
-                              name="fecha_recibido"
-                              required
-                            />
-                            <div style={{ color: "red" }}>
-                            <ErrorMessage type="date" name="fecha_recibido" />
-                          </div>
                           </div>
                         </div>
                       </div>
@@ -244,15 +167,6 @@ function DetallesDispositivo() {
                         className="col d-flex align-items-center justify-content-center"
                         style={{ marginTop: 50 }}
                       >
-                        <button
-                          disabled={isSubmitting}
-                          className="btn btn-primary btn-detalles"
-                          type="submit"
-                          value="submit"
-                          style={{ marginRight: 55 }}
-                        >
-                          Guardar
-                        </button>
                         <Link
                           to="bitacoras"
                           className="btn btn-primary btn-detalles"

@@ -11,7 +11,6 @@ function ListDispositivos({ dispositivos }) {
           <th>Modelo</th>
           <th>IMEI</th>
           <th>No. de Serie</th>
-          <th>Fecha Recibido</th>
           <th>Editar</th>
         </tr>
       </thead>
@@ -19,7 +18,6 @@ function ListDispositivos({ dispositivos }) {
         {dispositivos.map((dispositivo) => (
           <ItemDispositivo
             key={dispositivo.imei}
-            fecha_recibido={dispositivo.fecha_recibido_string}
             imei={dispositivo.imei}
             marca={dispositivo.marca}
             modelo={dispositivo.modelo}
