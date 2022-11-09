@@ -8,6 +8,7 @@ function ListBitacoras({ bitacoras }) {
       <thead>
         <tr>
           <th>Id</th>
+          <th>Fecha de entrada</th>
           <th>Entregado</th>
           <th>Editar</th>
         </tr>

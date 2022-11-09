@@ -6,6 +6,7 @@ function ItemBitacora({ bitacora }) {
   return (
     <tr>
       <td>{bitacora.id}</td>
+      <td>{bitacora.fecha_recibido_string}</td>
       <td>{bitacora.terminado ? "Si" : "No"}</td>
       <td>
         <Link to={`${bitacora.id}`}>

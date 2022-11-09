@@ -27,7 +27,10 @@ const Select = (props) => (
 );
 
 function DetallesBitacora() {
-  const [bitacora, setBitacora] = useState({ fecha_salida: "" });
+  const [bitacora, setBitacora] = useState({
+    fecha_salida: "",
+    fecha_recibido: "",
+  });
   const [dispositivo, setDispositivo] = useState({
     marca: "",
     modelo: "",
@@ -431,7 +434,7 @@ function DetallesBitacora() {
                                     </div>
                                   </td>
                                   <td>
-                                    {dispositivo.fecha_recibido.split("T")[0]}
+                                    {bitacora.fecha_recibido.split("T")[0]}
                                   </td>
                                   {terminado ? (
                                     <td>
