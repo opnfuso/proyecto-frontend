@@ -180,18 +180,7 @@ const CreateDispositivo = () => {
                   <div
                     className="row"
                     style={{ marginTop: 10, marginRight: 0, marginLeft: 0 }}
-                  >
-                    <div className="col">
-                      <div className="row">
-                        <div
-                          className="col col-md-8 offset-md-1"
-                          style={{ margin: 0 }}
-                        >
-                          <p>Fecha de recibido</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ></div>
                   <div className="row">
                     <div
                       className="col d-flex align-items-center justify-content-center"
