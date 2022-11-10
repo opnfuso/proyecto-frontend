@@ -29,6 +29,7 @@ function DetallesCliente() {
         domicilio: res.data.domicilio,
         fecha_nacimiento: res.data.fecha_nacimiento.split("T")[0],
         activo: res.data.activo,
+        email: res.data.email,
       };
 
       setCliente(cliente);
@@ -133,6 +134,7 @@ function DetallesCliente() {
                 domicilio: cliente.domicilio,
                 fecha_nacimiento: cliente.fecha_nacimiento,
                 telefono: cliente.telefono,
+                email: cliente.email,
               }}
               onSubmit={(values, { setSubmitting }) => {
                 const handleSubmit = async () => {
@@ -247,6 +249,29 @@ function DetallesCliente() {
                               placeholder="Fray miguel pieras 48"
                               required
                             />
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div
+                            className="col col-md-8 offset-md-1 mt-2"
+                            style={{ margin: 0 }}
+                          >
+                            <p>Email</p>
+                          </div>
+                          <div
+                            className="col col-md-10 offset-md-1"
+                            style={{ margin: 0 }}
+                          >
+                            <Field
+                              className="form-control"
+                              type="email"
+                              name="email"
+                              placeholder="votero9414@hostovz.com"
+                              required
+                            />
+                            <div style={{ color: "red" }}>
+                              <ErrorMessage type="text" name="email" />
+                            </div>
                           </div>
                         </div>
                       </div>
