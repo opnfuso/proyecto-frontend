@@ -28,6 +28,7 @@ const CreateCliente = () => {
               domicilio: "",
               fecha_nacimiento: "",
               telefono: "",
+              email: "",
             }}
             onSubmit={(values, { setSubmitting }) => {
               const handleSubmit = async () => {
@@ -51,10 +52,17 @@ const CreateCliente = () => {
                     }
                   } catch (error) {
                     console.error(error);
-                    Swal.fire({
-                      title: "Hubo un error",
-                      icon: "error",
-                    });
+                    if (error.response && error.response.status === 409) {
+                      Swal.fire({
+                        title: "El cliente ya existe en el sistema",
+                        icon: "error",
+                      });
+                    } else {
+                      Swal.fire({
+                        title: "Hubo un error",
+                        icon: "error",
+                      });
+                    }
                   }
                 });
               };
@@ -146,6 +154,29 @@ const CreateCliente = () => {
                           />
                           <div style={{ color: "red" }}>
                             <ErrorMessage type="text" name="domicilio" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div
+                          className="col col-md-8 offset-md-1 mt-2"
+                          style={{ margin: 0 }}
+                        >
+                          <p>Email</p>
+                        </div>
+                        <div
+                          className="col col-md-10 offset-md-1"
+                          style={{ margin: 0 }}
+                        >
+                          <Field
+                            className="form-control"
+                            type="email"
+                            name="email"
+                            placeholder="votero9414@hostovz.com"
+                            required
+                          />
+                          <div style={{ color: "red" }}>
+                            <ErrorMessage type="text" name="email" />
                           </div>
                         </div>
                       </div>

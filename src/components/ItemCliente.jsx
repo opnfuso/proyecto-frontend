@@ -9,6 +9,7 @@ function ItemCliente(props) {
       <td>{props.apellidos}</td>
       <td>{props.fechaNacimiento}</td>
       <td>{props.telefono}</td>
+      <td>{props.email}</td>
       <td>{props.domicilio}</td>
       <td>{props.activo ? "Activo" : "Inactivo"}</td>
       <td>
@@ -28,6 +29,7 @@ ItemCliente.propTypes = {
   fechaNacimiento: PropTypes.string,
   domicilio: PropTypes.string,
   activo: PropTypes.bool,
+  email: PropTypes.string,
 };
 
 export default ItemCliente;

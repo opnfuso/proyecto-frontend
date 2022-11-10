@@ -11,7 +11,9 @@ function ListClientes({ clientes }) {
           <th>Apellidos</th>
           <th>Fecha de nacimiento</th>
           <th>Telefono</th>
+          <th>Email</th>
           <th>Domicilio</th>
+          <th>Activo</th>
           <th>Editar</th>
         </tr>
       </thead>
@@ -26,6 +28,7 @@ function ListClientes({ clientes }) {
             telefono={cliente.telefono}
             domicilio={cliente.domicilio}
             activo={cliente.activo}
+            email={cliente.email}
           />
         ))}
       </tbody>
