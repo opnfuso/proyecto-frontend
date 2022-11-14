@@ -54,7 +54,8 @@ const CreateCliente = () => {
                     console.error(error);
                     if (error.response && error.response.status === 409) {
                       Swal.fire({
-                        title: "El cliente ya existe en el sistema",
+                        title:
+                          "El cliente con ese email ya existe en el sistema",
                         icon: "error",
                       });
                     } else {
