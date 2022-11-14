@@ -247,7 +247,6 @@ function CreateBitacora() {
                               <thead>
                                 <tr>
                                   <th>Progreso</th>
-                                  <th>Fecha de Entrada</th>
                                   <th>Fecha de entregado</th>
                                 </tr>
                               </thead>
