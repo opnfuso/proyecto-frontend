@@ -271,9 +271,6 @@ function CreateBitacora() {
                                     </div>
                                   </td>
                                   <td>
-                                    {dispositivo.fecha_recibido.split("T")[0]}
-                                  </td>
-                                  <td>
                                     <Field
                                       className="form-control"
                                       type="date"
