@@ -70,20 +70,21 @@ function DetallesBitacora() {
 
     if (res.data.TecnicosBitacoras && res.data.TecnicosBitacoras.length > 0) {
       addSelectTecnicos(res.data.TecnicosBitacoras);
-    } else {
-      setInputList2(
-        inputList2.concat(
-          <Select
-            className="mt-2"
-            options={options2}
-            onChange={(val) => {
-              setInputValuesList2(inputValuesList2.concat(val));
-            }}
-            required
-          />
-        )
-      );
     }
+    // } else {
+    //   setInputList2(
+    //     inputList2.concat(
+    //       <Select
+    //         className="mt-2"
+    //         options={options2}
+    //         onChange={(val) => {
+    //           setInputValuesList2(inputValuesList2.concat(val));
+    //         }}
+    //         required
+    //       />
+    //     )
+    //   );
+    // }
 
     setBitacora(res.data);
     setDispositivo(res.data.dispositivo);
