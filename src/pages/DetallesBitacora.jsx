@@ -284,7 +284,7 @@ function DetallesBitacora() {
                     reparado: bitacora.reparado,
                     fecha_salida: bitacora.fecha_salida
                       ? bitacora.fecha_salida.split("T")[0]
-                      : "",
+                      : "2022-11-23",
                     notas: bitacora.notas,
                     costo: bitacora.costo,
                   }}
